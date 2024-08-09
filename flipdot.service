@@ -1,0 +1,12 @@
+[Unit]
+Description=Flipdot api
+
+[Service]
+WorkingDirectory=/opt/PixelRaspi
+Environment="FLASK_RUN_HOST=0.0.0.0"
+Environment="FLASK_RUN_PORT=80"
+ExecStart=/opt/PixelRaspi/.venv/bin/flask --app flipdot run
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
