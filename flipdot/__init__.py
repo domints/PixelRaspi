@@ -4,7 +4,7 @@ import json
 from flask_swagger import swagger
 from flask_swagger_ui import get_swaggerui_blueprint
 from flask import Flask, jsonify
-from . import display
+from . import connector, actions, info, display
 
 SWAGGER_URL = '/swagger'  # URL for exposing Swagger UI (without trailing '/')
 API_URL = '/swagger.json'  # Our API url (can of course be a local resource)
@@ -29,7 +29,7 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    display.start_pixel(app.config.get('PIXEL_PORT', '/dev/serial0'), app.config.get('PIXEL_PIN', 18))
+    connector.start_pixel(app.config.get('PIXEL_PORT', '/dev/serial0'), app.config.get('PIXEL_PIN', 18))
 
     @app.route("/swagger.json")
     def spec():
@@ -54,11 +54,8 @@ def create_app(test_config=None):
         # }
     )
     app.register_blueprint(swaggerui_blueprint)
-
-    from . import info
     app.register_blueprint(info.bp)
-
-    from . import actions
+    app.register_blueprint(display.bp)
     app.register_blueprint(actions.bp)
 
     return app

@@ -1,5 +1,5 @@
 from flask import Blueprint, request, Response
-from . import display
+from . import connector
 
 bp = Blueprint('actions', __name__, url_prefix='/actions')
 
@@ -23,6 +23,20 @@ def validators_block():
     - actions
     """
     value = request.args.get("blocked", default=False, type=bool)
-    display.px.set_validators_block(value)
+    connector.px.set_validators_block(value)
+    return Response(status=200)
+
+@bp.route('/clear_pages', methods=['POST'])
+def clear_pages():
+    """
+    Clear all pages (make display blank)
+    ---
+    responses:
+        200:
+            description: Pages cleared
+    tags:
+    - actions
+    """
+    connector.px.delete_all_pages(0)
     return Response(status=200)
     

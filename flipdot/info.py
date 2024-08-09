@@ -1,5 +1,5 @@
 from flask import Blueprint
-from . import display
+from . import connector
 
 bp = Blueprint('info', __name__, url_prefix='/info')
 
@@ -14,7 +14,7 @@ def factory_id():
     tags:
     - info
     """
-    return display.px.get_factory_identification(0)
+    return connector.px.get_factory_identification(0)
 
 @bp.route("/gid")
 def gid():
@@ -27,7 +27,7 @@ def gid():
     tags:
     - info
     """
-    return display.px.get_gid(0)
+    return connector.px.get_gid(0)
 
 @bp.route("/did")
 def did():
@@ -40,7 +40,7 @@ def did():
     tags:
     - info
     """
-    return display.px.get_did(0)
+    return connector.px.get_did(0)
 
 @bp.route("/available_commands")
 def available_commands():
@@ -53,4 +53,4 @@ def available_commands():
     tags:
     - info
     """
-    return display.px.get_available_commands(0)
+    return connector.px.get_available_commands(0)
