@@ -1,0 +1,8 @@
+flask
+pyserial
+numpy
+pillow
+gpiozero
+pixel-flipdot
+flask-swagger
+flask-swagger-ui
