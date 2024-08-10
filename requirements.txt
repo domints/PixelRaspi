@@ -6,3 +6,4 @@ gpiozero
 pixel-flipdot
 flask-swagger
 flask-swagger-ui
+pydantic
