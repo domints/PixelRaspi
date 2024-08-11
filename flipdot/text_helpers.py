@@ -110,8 +110,8 @@ def draw_text(drawer: ImageDraw.ImageDraw,
         l1x = x
         l2x = x
         if align == TextAlign.Center:
-            l1x += l1_leftover / 2
-            l2x += l2_leftover / 2
+            l1x += math.floor(l1_leftover / 2)
+            l2x += math.floor(l2_leftover / 2)
         elif align == TextAlign.Right:
             l1x += l1_leftover
             l2x += l2_leftover
@@ -123,10 +123,10 @@ def draw_text(drawer: ImageDraw.ImageDraw,
         leftover = max(0, max_width - text_width)
         lx = x
         if align == TextAlign.Center:
-            lx += leftover / 2
+            lx += math.floor(leftover / 2)
         elif align == TextAlign.Right:
             lx += leftover
-        drawer.text((lx, y + fontDef.topOffset if not isSecondRow else fontDef.secondRowOffset), text, (colourVal), font=usr_font)
+        drawer.text((lx, y + (fontDef.topOffset if not isSecondRow else fontDef.secondRowOffset)), text, (colourVal), font=usr_font)
     return text_width
 
 def draw_icon(displayImage: Image.Image, name: str, x: int, y: int, invert: bool = False) -> int:
