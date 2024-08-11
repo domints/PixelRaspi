@@ -3,7 +3,7 @@ import json
 
 from flask_swagger import swagger
 from flask_swagger_ui import get_swaggerui_blueprint
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_file
 from . import connector, actions, info, display, text_helpers
 
 SWAGGER_URL = '/swagger'  # URL for exposing Swagger UI (without trailing '/')
@@ -29,29 +29,18 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    connector.start_pixel(app.config.get('PIXEL_PORT', '/dev/serial0'), app.config.get('PIXEL_PIN', 18))
-
+    connector.start_pixel(app.config.get('PIXEL_PORT', '/dev/serial0'), app.config.get('PIXEL_PIN', 18), app.config.get('PIXEL_USE_MOCK', False))
+    
     @app.route("/swagger.json")
     def spec():
-        swag = swagger(app)
-        swag['info']['version'] = "1.0"
-        swag['info']['title'] = "My API"
-        return jsonify(swag)
-    
+        return send_file("swagger.json")
+
     swaggerui_blueprint = get_swaggerui_blueprint(
         SWAGGER_URL,  # Swagger UI static files will be mapped to '{SWAGGER_URL}/dist/'
         API_URL,
         config={  # Swagger UI config overrides
             'app_name': "Pixel Flipdot"
         },
-        # oauth_config={  # OAuth config. See https://github.com/swagger-api/swagger-ui#oauth2-configuration .
-        #    'clientId': "your-client-id",
-        #    'clientSecret': "your-client-secret-if-required",
-        #    'realm': "your-realms",
-        #    'appName': "your-app-name",
-        #    'scopeSeparator': " ",
-        #    'additionalQueryStringParams': {'test': "hello"}
-        # }
     )
     app.register_blueprint(swaggerui_blueprint)
     app.register_blueprint(info.bp)

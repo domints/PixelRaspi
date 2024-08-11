@@ -1,0 +1,328 @@
+{
+  "definitions": {
+    "Addition": {
+      "type": "object",
+      "properties": {
+        "addition_type": {
+          "type": "string",
+          "enum": [
+            "icon",
+            "text"
+          ]
+        },
+        "invert": {
+          "type": "boolean"
+        },
+        "text": {
+          "type": "string"
+        },
+        "font": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        }
+      }
+    },
+    "DisplayData": {
+      "type": "object",
+      "properties": {
+        "addition": {
+          "$ref": "#/definitions/Addition"
+        },
+        "lines": {
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/definitions/TextLine"
+          }
+        }
+      }
+    },
+    "TextLine": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "font": {
+          "type": "string"
+        },
+        "invert": {
+          "type": "boolean",
+          "default": false
+        },
+        "auto_break": {
+          "type": "boolean",
+          "default": false
+        },
+        "align": {
+          "type": "string",
+          "enum": ["left", "center", "right"]
+        }
+      },
+      "required": ["text"]
+    }
+  },
+  "info": {
+    "title": "Pixel Flipdot API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/actions/clear_pages": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Pages cleared"
+          }
+        },
+        "summary": "Clear all pages (make display blank)",
+        "tags": [
+          "actions"
+        ]
+      }
+    },
+    "/actions/validators_block": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "description": "Indicates whether validators should be blocked or not",
+            "in": "query",
+            "name": "blocked",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validators set correctly."
+          }
+        },
+        "summary": "Sets validators block, either block or unblock. Might display information on internal display.",
+        "tags": [
+          "actions"
+        ]
+      }
+    },
+    "/display/image": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Page number, from 0 to probably 255",
+            "in": "query",
+            "name": "page",
+            "required": true
+          },
+          {
+            "description": "The file to upload.",
+            "in": "formData",
+            "name": "file",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Image should be displayed."
+          }
+        },
+        "summary": "Display image file",
+        "tags": [
+          "display"
+        ]
+      }
+    },
+    "/display/text": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "description": "Text to be displayed",
+            "in": "query",
+            "name": "value",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Page to display on",
+            "in": "query",
+            "name": "page",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Font to render with. If not set using superstar.",
+            "in": "query",
+            "name": "font",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Text should be displayed."
+          }
+        },
+        "summary": "Display single line of text",
+        "tags": [
+          "display"
+        ]
+      }
+    },
+
+    "/display/complex": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "description": "Description of data to display",
+            "in": "body",
+            "name": "display_data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DisplayData"
+            }
+          },
+          {
+            "description": "Page to display on",
+            "in": "query",
+            "name": "page",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Text should be displayed."
+          },
+          "400": {
+            "description": "Invalid request. Observe response message."
+          }
+        },
+        "summary": "Display complex text combination",
+        "tags": [
+          "display"
+        ]
+      }
+    },
+    "/info/available_commands": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "available commands."
+          }
+        },
+        "summary": "Gets available commands",
+        "tags": [
+          "info"
+        ]
+      }
+    },
+    "/info/did": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "DID."
+          }
+        },
+        "summary": "Gets device identification",
+        "tags": [
+          "info"
+        ]
+      }
+    },
+    "/info/factory_dentification": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Factory info."
+          }
+        },
+        "summary": "Gets factory identification from display (firmware version etc)",
+        "tags": [
+          "info"
+        ]
+      }
+    },
+    "/info/gid": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "GID."
+          }
+        },
+        "summary": "Gets information about display properties (size etc.)",
+        "tags": [
+          "info"
+        ]
+      }
+    },
+    "/text/fonts": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "List of available fonts."
+          }
+        },
+        "summary": "Gets available fonts",
+        "tags": [
+          "text"
+        ]
+      }
+    },
+    "/text/icons": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "List of available icons"
+          }
+        },
+        "summary": "Gets available icons",
+        "tags": [
+          "text"
+        ]
+      }
+    },
+    "/text/render_text": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "description": "Description of data to display",
+            "in": "body",
+            "name": "display_data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DisplayData"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Rendered image"
+          },
+          "400": {
+            "description": "Invalid request. Observe response message."
+          }
+        },
+        "summary": "Render display data object to image",
+        "tags": [
+          "text"
+        ]
+      }
+    }
+  },
+  "swagger": "2.0"
+}
