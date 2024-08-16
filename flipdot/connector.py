@@ -24,6 +24,7 @@ def start_pixel(port: str, pin: int | None = None, useMock: bool = False):
     display_width = int(dimensions[0][1:])
     display_height = int(dimensions[1])
     print(f'Display width: {display_width}, height: {display_height}')
+    print(pixel.get_factory_identification(0))
 
 def get_dimensions() -> Dimensions:
     return Dimensions(display_width, display_height)

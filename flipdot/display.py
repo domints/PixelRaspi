@@ -1,5 +1,5 @@
 from flask import Blueprint, request, Response
-from flipdot.connector import pixel, display_width, display_height
+from flipdot.connector import pixel
 from flipdot.text_helpers import available_fonts, get_display_data, render_display_data
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
