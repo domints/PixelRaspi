@@ -4,7 +4,7 @@ import json
 from flask_swagger import swagger
 from flask_swagger_ui import get_swaggerui_blueprint
 from flask import Flask, jsonify, send_file
-from . import connector, actions, info, display, text_helpers
+from . import connector
 
 SWAGGER_URL = '/swagger'  # URL for exposing Swagger UI (without trailing '/')
 API_URL = '/swagger.json'  # Our API url (can of course be a local resource)
@@ -43,6 +43,8 @@ def create_app(test_config=None):
         },
     )
     app.register_blueprint(swaggerui_blueprint)
+
+    from . import actions, info, display, text_helpers # needs to stay here (after connector.startpixel) because of python modules
     app.register_blueprint(info.bp)
     app.register_blueprint(display.bp)
     app.register_blueprint(actions.bp)
