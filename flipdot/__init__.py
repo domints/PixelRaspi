@@ -4,14 +4,14 @@ import json
 from flask_swagger import swagger
 from flask_swagger_ui import get_swaggerui_blueprint
 from flask import Flask, jsonify, send_file
-from . import connector
+from flipdot import connector
 
 SWAGGER_URL = '/swagger'  # URL for exposing Swagger UI (without trailing '/')
 API_URL = '/swagger.json'  # Our API url (can of course be a local resource)
 
 def create_app(test_config=None):
     # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__, instance_relative_config=True, static_url_path='/static')
     app.config.from_mapping(
         SECRET_KEY='dev'
     )
@@ -34,6 +34,14 @@ def create_app(test_config=None):
     @app.route("/swagger.json")
     def spec():
         return send_file("swagger.json")
+    
+    @app.route("/")
+    def index():
+        return send_file("static/index.html")
+    
+    @app.route("/icons/<path:path>")
+    def icon(path):
+        return send_file(f"../icons/{path}.png")
 
     swaggerui_blueprint = get_swaggerui_blueprint(
         SWAGGER_URL,  # Swagger UI static files will be mapped to '{SWAGGER_URL}/dist/'
