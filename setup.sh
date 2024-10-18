@@ -5,11 +5,14 @@ if [[ $EUID -ne 0 ]]; then
     exit 100
 fi
 
-chown -R hskrk:hsrk .
+user_id=$(echo $UID)
+group_id=$(id -g $UID)
+
+chown -R $user_id:$group_id .
 chmod +x update.sh
 
-sudo python -m venv .venv
-pip install -r requirements.txt
+python -m venv .venv
+.venv/bin/pip install -r requirements.txt
 
 cp flipdot.service /etc/systemd/system/flipdot.service
 systemctl daemon-reload

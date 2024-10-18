@@ -7,4 +7,5 @@ fi
 
 systemctl stop flipdot
 git pull
+.venv/bin/pip install -r requirements.txt -U
 systemctl start flipdot
