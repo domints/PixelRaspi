@@ -14,7 +14,7 @@ def start_pixel(port: str, pin: int | None = None, useMock: bool = False):
     global display_width
     global display_height
     if useMock:
-        pixel = PixelMock()
+        pixel = PixelMock("G21x12x14/SOS1P01")
     else:
         pixel = Pixel(port, pin)
         pixel.open()

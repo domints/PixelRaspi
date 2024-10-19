@@ -1,6 +1,6 @@
 from flask import Blueprint, request, Response
 from flipdot.connector import pixel
-from flipdot.text_helpers import available_fonts, get_display_data, render_display_data
+from flipdot.text_helpers import available_fonts, get_display_data, render_display_data, get_dimensions
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 
@@ -28,7 +28,7 @@ def text():
     fontDef = available_fonts.get(font)
     if fontDef is None:
         Response("Font not found", status=404)
-    img = Image.new("1", (84, 16), (0))
+    img = Image.new("1", get_dimensions(), (0))
     d_usr = ImageDraw.Draw(img)
     usr_font = ImageFont.truetype(fontDef.getPath(), fontDef.nativeSize)
     d_usr.text((0, fontDef.topOffset), value,(255), font=usr_font)
