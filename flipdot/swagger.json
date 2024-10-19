@@ -83,6 +83,29 @@
         ]
       }
     },
+    "/actions/raw/ddb": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "description": "Datablock value to send",
+            "in": "query",
+            "name": "value",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Datablock sent."
+          }
+        },
+        "summary": "Sends datablock to display. Should show it.",
+        "tags": [
+          "actions"
+        ]
+      }
+    },
     "/actions/validators_block": {
       "post": {
         "description": "",

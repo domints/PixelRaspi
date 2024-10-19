@@ -13,4 +13,10 @@ def validators_block():
 def clear_pages():
     pixel.delete_all_pages(0)
     return Response(status=200)
+
+@bp.route('/raw/ddb', methods=['POST'])
+def display_raw_ddb():
+    value = request.args.get('value')
+    pixel.display_data_block(0, value)
+    return Response(status=200)
     
