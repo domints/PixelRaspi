@@ -89,7 +89,10 @@ class BinaryFont(BaseFont):
             x = 0
             for p in r:
                 if p == '#':
-                    img.putpixel((px + x, py + y), fill if fill is not None else 1)
+                    px_x = px + x
+                    px_y = py + y
+                    if px_x < img.width and px_y < img.height:
+                        img.putpixel((px_x, px_y), fill if fill is not None else 1)
                 x += 1
                 pass
             y += 1
