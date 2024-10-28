@@ -1,7 +1,9 @@
-from typing import Optional
+import abc
+import codecs
+from typing import Any, Dict, Optional
 from flask import Blueprint, request, Response
 from flipdot.connector import get_dimensions
-from flipdot.models import DisplayData, AdditionType, TextAlign, get_display_data
+from flipdot.models import CharD, DisplayData, AdditionType, PxFont, TextAlign, get_display_data
 import io
 import json
 import math
@@ -11,47 +13,115 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 default_big_font = "MiniMasa"
 default_small_font = "uni05_53"
 
-class FontDef:
-    def __init__(self, name: str, format: str, nativeSize: int, topOffset: int = 0, halfHeight: bool = False, doubleOffset: int = 0, secondRowOffset: Optional[int] = None, hasDiacritics: bool = False):
+class BaseFont:
+    def __init__(self, isTrueTrype: bool, name: str, height: int, topOffset: int, secondRowOffset: int, halfHeight: bool, hasDiacritics: bool):
+        self.isTrueType = isTrueTrype
         self.name = name
-        self.format = format
-        self.nativeSize = nativeSize
+        self.height = height
         self.topOffset = topOffset
+        self.secondRowOffset = topOffset if secondRowOffset is None else secondRowOffset
         self.halfHeight = halfHeight
         self.hasDiacritics = hasDiacritics
+
+    @abc.abstractmethod
+    def drawText(self, img: Image, x: int, y: int, text: str, fill: Any | None = None, charSpace: int | None = None):
+        raise NotImplementedError()
+    
+    @abc.abstractmethod
+    def calcWidth(self, text: str, charSpace: int | None = None) -> int:
+        raise NotImplementedError()
+
+class TTFFont(BaseFont):
+    def __init__(self, name: str, format: str, nativeSize: int, topOffset: int = 0, halfHeight: bool = False, doubleOffset: int = 0, secondRowOffset: Optional[int] = None, hasDiacritics: bool = False):
+        BaseFont.__init__(self, True, name, nativeSize, topOffset, secondRowOffset, halfHeight, hasDiacritics)
+        self.format = format
         self.doubleOffset = doubleOffset
-        self.secondRowOffset = topOffset if secondRowOffset is None else secondRowOffset
+        
+        self.imgFont = ImageFont.truetype(self.getPath(), self.height)
 
     def getPath(self) -> str:
         return f'fonts/{self.name}.{self.format}'
+    
+    def drawText(self, img: Image, x: int, y: int, text: str, fill: Any | None = None, charSpace: int | None = None):
+        draw = ImageDraw.ImageDraw(img)
+        draw.text((x, y), text, fill, font=self.imgFont)
 
-available_fonts = {
-    'joystix': FontDef("joystix", "otf", 10, 2, hasDiacritics=True),
-    'superstar': FontDef("superstar", "ttf", 16, hasDiacritics=True),
-    'super_mario_bros': FontDef("super_mario_bros", "ttf", 8, halfHeight=True, doubleOffset=-1, hasDiacritics=True),
-    'KiwiSoda': FontDef("KiwiSoda", "ttf", 16, hasDiacritics=True),
-    'PressStart2P': FontDef("PressStart2P", "ttf", 8, halfHeight=True, doubleOffset=1, hasDiacritics=True),
-    'gosub': FontDef("gosub", "otf", 7, -1, halfHeight=True, hasDiacritics=True),
-    'tandysoft': FontDef("tandysoft", "otf", 10, 1, hasDiacritics=True),
-    '2a03': FontDef("2a03", "ttf", 16, 1, hasDiacritics=True),
-    'Pixolletta': FontDef("Pixolletta", "ttf", 10, 4, hasDiacritics=True),
-    'MiniMasa': FontDef("MiniMasa", "ttf", 12, -2, hasDiacritics=True),
-    'MiniSet2': FontDef("MiniSet2", "ttf", 8, 3, halfHeight=False, hasDiacritics=True),
-    'uni05_53': FontDef("uni05_53", "ttf", 8, halfHeight=True, hasDiacritics=True),
-    'uni05_54': FontDef("uni05_54", "ttf", 8, halfHeight=True, hasDiacritics=True),
-    'uni05_63': FontDef("uni05_63", "ttf", 8, halfHeight=True, hasDiacritics=True),
-    'uni05_64': FontDef("uni05_64", "ttf", 8, halfHeight=True, hasDiacritics=True),
-    'axion14': FontDef("axion14", "ttf", 14, 1),
-    'pixol': FontDef("pixol", "ttf", 10, 4),
-    'twin6': FontDef("twin6", "ttf", 6, 1, halfHeight=True, doubleOffset=2),
-    'twin14': FontDef("twin14", "ttf", 10, 1),
-    'cg': FontDef("cg", "ttf", 5, 2, halfHeight=2, secondRowOffset=1)
+    def calcWidth(self, text: str, charSpace: int | None = None) -> int:
+        return int(math.ceil(self.imgFont.getlength(text))) - 1
+
+    
+class BinaryFont(BaseFont):
+    def __init__(self, font: PxFont, halfHeight: bool, hasDiacritics: bool):
+        BaseFont.__init__(self, True, font.name, font.height, 0, 0, halfHeight, hasDiacritics)
+        self.pxFont = font
+        pass
+
+    def drawText(self, img: Image.Image, x: int, y: int, text: str, fill: Any | None = None, charSpace: int | None = None):
+        chars = codecs.encode(text, self.pxFont.codepage, errors='replace')
+        charSp = 1 if charSpace is None else charSpace
+        currX = x
+        for chr_code in chars:
+            ch = None
+            if chr_code in chars:
+                ch = self.pxFont.chars[chr_code]
+            if ch is not None:
+                self.draw_char(img, ch, currX, y, fill)
+                currX += ch.width + charSp
+
+    def calcWidth(self, text: str, charSpace: int | None = None) -> int:
+        chars = codecs.encode(text, self.pxFont.codepage, errors='replace')
+        charSp = 1 if charSpace is None else charSpace
+        currX = 0
+        for str_ix in range(len(chars)):
+            ch = None
+            chr_code = chars[str_ix]
+            if chr_code in chars:
+                ch = self.pxFont.chars[chr_code]
+            if ch is not None:
+                currX += ch.width
+            if str_ix < len(chars) - 1:
+                currX += charSp
+        return currX
+
+    def draw_char(self, img: Image.Image, char: CharD, px: int | None = None, py: int | None = None, fill: Any | None = None):
+        y = 0
+        for r in char.rows:
+            x = 0
+            for p in r:
+                if p == '#':
+                    img.putpixel((px + x, py + y), fill if fill is not None else 1)
+                x += 1
+                pass
+            y += 1
+        pass
+
+available_fonts: Dict[str, BaseFont] = {
+    'joystix': TTFFont("joystix", "otf", 10, 2, hasDiacritics=True),
+    'superstar': TTFFont("superstar", "ttf", 16, hasDiacritics=True),
+    'super_mario_bros': TTFFont("super_mario_bros", "ttf", 8, halfHeight=True, doubleOffset=-1, hasDiacritics=True),
+    'KiwiSoda': TTFFont("KiwiSoda", "ttf", 16, hasDiacritics=True),
+    'PressStart2P': TTFFont("PressStart2P", "ttf", 8, halfHeight=True, doubleOffset=1, hasDiacritics=True),
+    'gosub': TTFFont("gosub", "otf", 7, -1, halfHeight=True, hasDiacritics=True),
+    'tandysoft': TTFFont("tandysoft", "otf", 10, 1, hasDiacritics=True),
+    '2a03': TTFFont("2a03", "ttf", 16, 1, hasDiacritics=True),
+    'Pixolletta': TTFFont("Pixolletta", "ttf", 10, 4, hasDiacritics=True),
+    'MiniMasa': TTFFont("MiniMasa", "ttf", 12, -2, hasDiacritics=True),
+    'MiniSet2': TTFFont("MiniSet2", "ttf", 8, 3, halfHeight=False, hasDiacritics=True),
+    'uni05_53': TTFFont("uni05_53", "ttf", 8, halfHeight=True, hasDiacritics=True),
+    'uni05_54': TTFFont("uni05_54", "ttf", 8, halfHeight=True, hasDiacritics=True),
+    'uni05_63': TTFFont("uni05_63", "ttf", 8, halfHeight=True, hasDiacritics=True),
+    'uni05_64': TTFFont("uni05_64", "ttf", 8, halfHeight=True, hasDiacritics=True),
+    'axion14': TTFFont("axion14", "ttf", 14, 1),
+    'pixol': TTFFont("pixol", "ttf", 10, 4),
+    'twin6': TTFFont("twin6", "ttf", 6, 1, halfHeight=True, doubleOffset=2),
+    'twin14': TTFFont("twin14", "ttf", 10, 1),
+    'cg': TTFFont("cg", "ttf", 5, 2, halfHeight=2, secondRowOffset=1)
 }
 
 def calc_width(font: ImageFont.ImageFont, text: str):
     return int(math.ceil(font.getlength(text))) - 1
 
-def draw_text(drawer: ImageDraw.ImageDraw,
+def draw_text(img: Image.Image,
               font: str,
               text: str,
               x: int,
@@ -66,8 +136,7 @@ def draw_text(drawer: ImageDraw.ImageDraw,
     fontDef = available_fonts[font]
     if fontDef is None:
         raise ValueError(f"No such font ({font}) available.")
-    usr_font = ImageFont.truetype(fontDef.getPath(), fontDef.nativeSize)
-    text_width = calc_width(usr_font, text)
+    text_width = fontDef.calcWidth(text)
     reduced = False
     original_y = y
     colourVal = 255
@@ -75,10 +144,11 @@ def draw_text(drawer: ImageDraw.ImageDraw,
         colourVal = 0
         height = (8 if fontDef.halfHeight else 16)
     
+    drawer = ImageDraw.ImageDraw(img)
+
     if not isAddition and text_width > max_width and auto_line_break:
         fontDef = available_fonts[default_small_font]
-        usr_font = ImageFont.truetype(fontDef.getPath(), fontDef.nativeSize)
-        text_width = calc_width(usr_font, text)
+        text_width = fontDef.calcWidth(text)
         y += 4
         reduced = True
     if text_width > max_width and reduced and ' ' in text:
@@ -90,7 +160,7 @@ def draw_text(drawer: ImageDraw.ImageDraw,
         for i in range(0, len(words)):
             if not firstLineFull:
                 tempLine = (firstLine + ' ' + words[i]) if i > 0 else words[i]
-                width = calc_width(usr_font, tempLine)
+                width = fontDef.calcWidth(tempLine)
                 if width > max_width:
                     firstLineFull = True
                     secondLine = words[i]
@@ -103,8 +173,8 @@ def draw_text(drawer: ImageDraw.ImageDraw,
         height = 16
         if invert:
             drawer.rectangle((x, y, x + max_width, min(16, y + height)), fill=(255), width=0)
-        l1_width = calc_width(usr_font, firstLine)
-        l2_width = calc_width(usr_font, secondLine)
+        l1_width = fontDef.calcWidth(firstLine)
+        l2_width = fontDef.calcWidth(secondLine)
         l1_leftover = max(0, max_width - l1_width)
         l2_leftover = max(0, max_width - l2_width)
         l1x = x
@@ -115,8 +185,8 @@ def draw_text(drawer: ImageDraw.ImageDraw,
         elif align == TextAlign.Right:
             l1x += l1_leftover
             l2x += l2_leftover
-        drawer.text((l1x, y + fontDef.topOffset), firstLine, (colourVal), font=usr_font)
-        drawer.text((l2x, y + fontDef.secondRowOffset + 8), secondLine, (colourVal), font=usr_font)
+        fontDef.drawText(img, l1x, y + fontDef.topOffset, firstLine, (colourVal))
+        fontDef.drawText(img, l2x, y + fontDef.secondRowOffset + 8, secondLine, (colourVal))
     else:
         if invert:
             drawer.rectangle((x, y, x + (text_width - 1 if isAddition else max_width), min(16, y + height)), fill=(255), width=0)
@@ -126,7 +196,7 @@ def draw_text(drawer: ImageDraw.ImageDraw,
             lx += math.floor(leftover / 2)
         elif align == TextAlign.Right:
             lx += leftover
-        drawer.text((lx, y + (fontDef.topOffset if not isSecondRow else fontDef.secondRowOffset)), text, (colourVal), font=usr_font)
+        fontDef.drawText(img, lx, y + (fontDef.topOffset if not isSecondRow else fontDef.secondRowOffset), text, (colourVal))
     return text_width
 
 def draw_icon(displayImage: Image.Image, name: str, x: int, y: int, invert: bool = False) -> int:
@@ -145,14 +215,13 @@ def render_display_data(data: DisplayData) -> Image.Image:
     dimensions = get_dimensions()
     print(f'Render Display size, width {dimensions.width}x{dimensions.height}')
     img = Image.new("1", dimensions, (0))
-    d_usr = ImageDraw.Draw(img)
     left_text_margin = 0
     if data.addition is not None:
         if data.addition.addition_type == AdditionType.Text:
             add_font = default_big_font
             if data.addition.font is not None:
                 add_font = data.addition.font
-            left_text_margin = draw_text(d_usr, add_font, data.addition.text, 0, 0, img.width, data.addition.invert, isAddition=True) + 1
+            left_text_margin = draw_text(img, add_font, data.addition.text, 0, 0, img.width, data.addition.invert, isAddition=True) + 1
         elif data.addition.addition_type == AdditionType.Icon:
             left_text_margin = draw_icon(img, data.addition.icon, 0, 0, data.addition.invert)
     if data.lines is not None and len(data.lines) > 0:
@@ -163,7 +232,7 @@ def render_display_data(data: DisplayData) -> Image.Image:
             font = default_big_font if singleLine else default_small_font
             if data.lines[i].font is not None:
                 font = data.lines[i].font
-            draw_text(d_usr, font, data.lines[i].text, left_text_margin, i * 8, img.width - left_text_margin, data.lines[i].invert, data.lines[i].auto_break if singleLine else False, True if i == 1 else False, False, data.lines[i].align)
+            draw_text(img, font, data.lines[i].text, left_text_margin, i * 8, img.width - left_text_margin, data.lines[i].invert, data.lines[i].auto_break if singleLine else False, True if i == 1 else False, False, data.lines[i].align)
 
     return img
 
@@ -174,7 +243,7 @@ def get_fonts():
     result = []
     for f in available_fonts:
         fd = available_fonts[f]
-        o = {'name': fd.name, 'halfHeight': fd.halfHeight, 'hasDiacritics': fd.hasDiacritics }
+        o = {'name': fd.name, 'halfHeight': fd.halfHeight, 'hasDiacritics': fd.hasDiacritics, 'isBinary': not fd.isTrueType }
         result.append(o)
 
     return Response(json.dumps(result), status=200, content_type="text/json")

@@ -1,6 +1,6 @@
 from enum import Enum
-from typing import Optional
-from pydantic import BaseModel, ConfigDict
+from typing import Dict, Optional
+from pydantic import BaseModel, ConfigDict, TypeAdapter
 
 class AdditionType(Enum):
     Icon = 'icon'
@@ -10,6 +10,11 @@ class TextAlign(Enum):
     Left = 'left'
     Center = 'center'
     Right = 'right'
+
+class VerticalAlign(Enum):
+    Top = 'top'
+    Middle = 'middle'
+    Bottom = 'bottom'
 
 class Addition(BaseModel):
     model_config = ConfigDict()
@@ -29,13 +34,51 @@ class TextLine(BaseModel):
     auto_break: bool = True
     align: TextAlign = TextAlign.Left
 
+class Span(BaseModel):
+    model_config = ConfigDict()
+
+    text: str = ''
+    valign: VerticalAlign = 'top'
+    font: Optional[str] = None
+
+class Block(BaseModel):
+    model_config = ConfigDict()
+    invert: bool = False
+    top: Optional[int] = None
+    bottom: Optional[int] = None
+    left: Optional[int] = None
+    right: Optional[int] = None
+    spans: list[str | Span] = []
+    
 class DisplayData(BaseModel):
     model_config = ConfigDict()
 
     addition: Optional[Addition] = None
     lines: Optional[list[TextLine]] = None
+    blocks: Optional[list[Block]] = None
 
+class CharD(BaseModel):
+    model_config = ConfigDict()
 
+    height: int = 0
+    width: int = 0
+    code: int = 0
+    rows: list[str] = []
+
+class PxFont(BaseModel):
+    model_config = ConfigDict()
+
+    name: str = ''
+    height: int = 0
+    base: int = 0
+    mid: int = 0
+    top: int = 0
+    codepage: str = ''
+    chars: Dict[int, CharD] = {}
 
 def get_display_data(json_data: str) -> DisplayData:
     return DisplayData.model_validate_json(json_data)
+
+def get_fonts(json_data: bytes) -> list[PxFont]:
+    ta = TypeAdapter(list[PxFont])
+    return ta.validate_json(json_data)

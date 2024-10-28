@@ -4,7 +4,7 @@ import json
 from flask_swagger import swagger
 from flask_swagger_ui import get_swaggerui_blueprint
 from flask import Flask, jsonify, send_file
-from flipdot import connector
+from flipdot import connector, fonts
 
 SWAGGER_URL = '/swagger'  # URL for exposing Swagger UI (without trailing '/')
 API_URL = '/swagger.json'  # Our API url (can of course be a local resource)
@@ -29,6 +29,7 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    fonts.initialize()
     connector.start_pixel(app.config.get('PIXEL_PORT', '/dev/serial0'), app.config.get('PIXEL_PIN', 18), app.config.get('PIXEL_USE_MOCK', False))
     
     @app.route("/swagger.json")

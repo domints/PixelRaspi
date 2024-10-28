@@ -7,7 +7,7 @@ pixel: Pixel = None
 display_width: int = 0
 display_height: int = 0
 
-Dimensions = namedtuple('Dimensions', ['width', 'height'])
+Dimensions: type[tuple[int, int]] = namedtuple('Dimensions', ['width', 'height'])
 
 def start_pixel(port: str, pin: int | None = None, useMock: bool = False):
     global pixel

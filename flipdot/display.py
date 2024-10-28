@@ -29,9 +29,7 @@ def text():
     if fontDef is None:
         Response("Font not found", status=404)
     img = Image.new("1", get_dimensions(), (0))
-    d_usr = ImageDraw.Draw(img)
-    usr_font = ImageFont.truetype(fontDef.getPath(), fontDef.nativeSize)
-    d_usr.text((0, fontDef.topOffset), value,(255), font=usr_font)
+    fontDef.drawText(img, 0, 0 + fontDef.topOffset, value, (255))
     imgArr = np.asarray(img)
     data = pixel.create_data_block(pixel.get_image_data(imgArr, page=page))
     resp = pixel.display_data_block(0, data)

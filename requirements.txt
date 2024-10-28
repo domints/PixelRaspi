@@ -3,7 +3,7 @@ pyserial
 numpy
 pillow
 gpiozero
-pixel-flipdot
+pixel-flipdot==0.0.3
 flask-swagger
 flask-swagger-ui
 pydantic
