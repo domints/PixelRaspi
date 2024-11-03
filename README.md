@@ -31,3 +31,9 @@ If you don't want to connect to hardware display, you can use mock device, which
     {
         "PIXEL_USE_MOCK": true
     }
+
+## Additional resources
+
+If you'd like to look for extra icons for your project, here are bunch of links. For licensing reasons I can't include them here, although I think they are fitting brilliantly onto flipdot display - just plop PNGs into the icons folder:
+
+ * https://github.com/breqdev/weather-pixel-icons - awesome set of weather icons for your weather project. Just grab ordinary 16x16 icon set
