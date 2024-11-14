@@ -3,7 +3,7 @@
 API that will be able to control Pixel Bydgoszcz display using RS485 on Raspi (we're using Pi Zero W).
 
 First thing you need on raspi, to enable UART.
-Run `sudo raspi-config`, select `Interface Options` -> `Serial` -> Disable login shell over serial, enable serial port hardware. On PiZeroW it may need some extra config because of BT?
+Run `sudo raspi-config`, select `Interface Options` -> `Serial` -> Disable login shell over serial, enable serial port hardware. On PiZeroW you need to add `dtoverlay=disable-bt` to `/boot/firmware/config.txt`.
 
 It would be great if you cloned that repo to `/opt/PixelRaspi` (just `cd /opt && sudo git clone https://github.com/domints/PixelRaspi.git`), then executed `sudo setup.sh`, it should set permissions, create systemd unit and start it.
 
