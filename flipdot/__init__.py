@@ -4,7 +4,8 @@ import json
 from flask_swagger import swagger
 from flask_swagger_ui import get_swaggerui_blueprint
 from flask import Flask, jsonify, send_file
-from flipdot import connector, fonts
+from flipdot import connector, fonts, clock
+from apscheduler.schedulers.background import BackgroundScheduler
 
 SWAGGER_URL = '/swagger'  # URL for exposing Swagger UI (without trailing '/')
 API_URL = '/swagger.json'  # Our API url (can of course be a local resource)
@@ -31,6 +32,14 @@ def create_app(test_config=None):
 
     fonts.initialize()
     connector.start_pixel(app.config.get('PIXEL_PORT', '/dev/serial0'), app.config.get('PIXEL_PIN', 18), app.config.get('PIXEL_USE_MOCK', False))
+    
+    def tick():
+        clock.tick()
+    
+    scheduler = BackgroundScheduler()
+    if app.config.get('CLOCK', False):
+        scheduler.add_job(id='clock-job', func=tick, trigger='interval', seconds=15)
+    scheduler.start()
     
     @app.route("/swagger.json")
     def spec():

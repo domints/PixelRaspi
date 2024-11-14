@@ -216,7 +216,6 @@ def draw_icon(displayImage: Image.Image, name: str, x: int, y: int, invert: bool
 
 def render_display_data(data: DisplayData) -> Image.Image:
     dimensions = get_dimensions()
-    print(f'Render Display size, width {dimensions.width}x{dimensions.height}')
     img = Image.new("1", dimensions, (0))
     left_text_margin = 0
     if data.addition is not None:
