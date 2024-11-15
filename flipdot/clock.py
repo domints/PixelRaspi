@@ -18,7 +18,7 @@ def tick():
     if (current.minute != last_time.minute or current.hour != last_time.hour):
         last_time = current
         try:
-            text = f'{current.hour:2d}:{current.minute:2d}    {current.day:2d}.{current.month:2d}.{current.year:2d}'
+            text = f'{current.hour:02d}:{current.minute:02d}    {current.day:02d}.{current.month:02d}.{current.year:02d}'
             lines = [
                 TextLine(text=text, font='(14) LED 120x16 CHUDE - LT', align='center')
             ]
