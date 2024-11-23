@@ -1,8 +1,6 @@
 from datetime import datetime
 import time
 import numpy as np
-#from flipdot.connector import pixel
-from flipdot.display import display_data_block
 from flipdot.models import DisplayData, TextLine
 from flipdot.text_helpers import render_display_data
 
@@ -15,6 +13,7 @@ def tick():
     '''
     global last_time
     from flipdot.connector import pixel
+    from flipdot.display import display_data_block_with_retry
     current = datetime.now()
     if (current.minute != last_time.minute or current.hour != last_time.hour):
         last_time = current
@@ -28,7 +27,7 @@ def tick():
             imgArr = np.asarray(img)
             for i in range(1, 10):
                 data = pixel.create_data_block(pixel.get_image_data(imgArr, page=i))
-                display_data_block(0, data)
+                display_data_block_with_retry(0, data)
                 time.sleep(1)
         except:
             pass

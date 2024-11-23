@@ -1,18 +1,18 @@
+from pixel import Pixel
 from flask import Blueprint, request, Response
 from flipdot.connector import pixel
 from flipdot.text_helpers import available_fonts, get_display_data, render_display_data, get_dimensions
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
-from pixel import Pixel
 
 bp = Blueprint('display', __name__, url_prefix='/display')
 
-def display_data_block(px: Pixel, page: int, data: str) -> str | None:
+def display_data_block_with_retry(page: int, data: str) -> str | None:
     retryCount = 3
     err: str | None = None
     while retryCount > 0:
         try:
-            px.display_data_block(page, data)
+            pixel.display_data_block(page, data)
             err = None
             retryCount = 0
         except ValueError as e:
@@ -27,7 +27,7 @@ def upload_file():
     img = Image.open(imageFile.stream)
     imgArr = np.asarray(img)
     data = pixel.create_data_block(pixel.get_image_data(imgArr, page=page))
-    resp = display_data_block(pixel, 0, data)
+    resp = display_data_block_with_retry(0, data)
     if resp is not None:
         return Response(resp, status=500)
     return Response(status=200)
@@ -46,7 +46,7 @@ def text():
     fontDef.drawText(img, 0, 0 + fontDef.topOffset, value, (255))
     imgArr = np.asarray(img)
     data = pixel.create_data_block(pixel.get_image_data(imgArr, page=page))
-    resp = display_data_block(pixel, 0, data)
+    resp = display_data_block_with_retry(0, data)
     if resp is not None:
         return Response(resp, status=500)
     return Response(status=200)
@@ -62,7 +62,7 @@ def complex():
         return Response(str(e.args), status=400)
     imgArr = np.asarray(img)
     data = pixel.create_data_block(pixel.get_image_data(imgArr, page=page))
-    err = display_data_block(pixel, 0, data)
+    err = display_data_block_with_retry(0, data)
     if err is not None:
         return Response(err, status=500)
     return Response(status=200)
