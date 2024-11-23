@@ -1,5 +1,6 @@
 from enum import Enum
 from typing import Dict, Optional
+from flask import Response
 from pydantic import BaseModel, ConfigDict, TypeAdapter
 
 class AdditionType(Enum):
@@ -74,6 +75,21 @@ class PxFont(BaseModel):
     top: int = 0
     codepage: str = ''
     chars: Dict[int, CharD] = {}
+
+class Result():
+    isOk: bool = True
+    isTimeout: bool = False
+    msg: str | None = None
+    def toResponse(self):
+        code = 200
+        msg = None
+        if self.isTimeout:
+            code = 420
+            msg = "Calm down, display can't handle you."
+        elif not self.isOk:
+            code = 500
+            msg = self.msg
+        return Response(msg, status=code)
 
 def get_display_data(json_data: str) -> DisplayData:
     return DisplayData.model_validate_json(json_data)

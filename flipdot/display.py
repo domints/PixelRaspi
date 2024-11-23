@@ -1,24 +1,41 @@
 from pixel import Pixel
 from flask import Blueprint, request, Response
 from flipdot.connector import pixel
+from flipdot.models import Result
 from flipdot.text_helpers import available_fonts, get_display_data, render_display_data, get_dimensions
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
+import threading
+import time
+
+DDB_LOCK = threading.Lock()
 
 bp = Blueprint('display', __name__, url_prefix='/display')
 
-def display_data_block_with_retry(page: int, data: str) -> str | None:
-    retryCount = 3
-    err: str | None = None
-    while retryCount > 0:
-        try:
-            pixel.display_data_block(page, data)
-            err = None
-            retryCount = 0
-        except ValueError as e:
-            err = e.args
-            retryCount -= 1
-    return err
+def display_data_block_with_retry(page: int, data: str) -> Result:
+    acquired = DDB_LOCK.acquire(timeout=3)
+    if not acquired:
+        r  = Result()
+        r.isOk = False
+        r.isTimeout = True
+        return r
+    try:
+        retryCount = 3
+        err: str | None = None
+        while retryCount > 0:
+            try:
+                pixel.display_data_block(page, data)
+                return Result()
+            except ValueError as e:
+                err = e.args
+                retryCount -= 1
+        res = Result()
+        if err is not None:
+            res.isOk = False
+            res.msg = err
+        return Result()
+    finally:
+        DDB_LOCK.release()
 
 @bp.route('/image', methods = ['POST'])
 def upload_file():
@@ -28,9 +45,7 @@ def upload_file():
     imgArr = np.asarray(img)
     data = pixel.create_data_block(pixel.get_image_data(imgArr, page=page))
     resp = display_data_block_with_retry(0, data)
-    if resp is not None:
-        return Response(resp, status=500)
-    return Response(status=200)
+    return resp.toResponse()
 
 @bp.route('/text', methods=["POST"])
 def text():
@@ -47,9 +62,7 @@ def text():
     imgArr = np.asarray(img)
     data = pixel.create_data_block(pixel.get_image_data(imgArr, page=page))
     resp = display_data_block_with_retry(0, data)
-    if resp is not None:
-        return Response(resp, status=500)
-    return Response(status=200)
+    return resp.toResponse()
 
 @bp.route("/complex", methods=["POST"])
 def complex():
@@ -62,8 +75,5 @@ def complex():
         return Response(str(e.args), status=400)
     imgArr = np.asarray(img)
     data = pixel.create_data_block(pixel.get_image_data(imgArr, page=page))
-    err = display_data_block_with_retry(0, data)
-    if err is not None:
-        return Response(err, status=500)
-    return Response(status=200)
-    pass
+    resp = display_data_block_with_retry(0, data)
+    return resp.toResponse()
