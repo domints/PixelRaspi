@@ -48,8 +48,17 @@ def complex():
         return Response(str(e.args), status=400)
     imgArr = np.asarray(img)
     data = pixel.create_data_block(pixel.get_image_data(imgArr, page=page))
-    resp = pixel.display_data_block(0, data)
-    if resp is not None:
-        return Response(resp, status=500)
+    retryCount = 3
+    err: str | None = None
+    while retryCount > 0:
+        try:
+            pixel.display_data_block(0, data)
+            err = None
+            retryCount = 0
+        except ValueError as e:
+            err = e.args
+            retryCount -= 1
+    if err is not None:
+        return Response(err, status=500)
     return Response(status=200)
     pass
