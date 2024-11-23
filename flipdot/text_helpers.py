@@ -2,8 +2,9 @@ import abc
 import codecs
 from typing import Any, Dict, Optional
 from flask import Blueprint, request, Response
+from flipdot.block_helpers import render_blocks_data
 from flipdot.connector import get_dimensions
-from flipdot.models import CharD, DisplayData, AdditionType, PxFont, TextAlign, get_display_data
+from flipdot.models import CharD, DisplayData, AdditionType, PxFont, TextAlign, get_blocks, get_display_data
 import io
 import json
 import math
@@ -271,3 +272,18 @@ def get_rendered_text():
     img_resized = img.resize((img.width * 8, img.height * 8))
     img_resized.save(imgByteArr, format='PNG')
     return Response(imgByteArr.getvalue(), status=200, mimetype="image/png")
+
+@bp.route("/render_blocks", methods=["POST"])
+def get_rendered_blocks():
+    json_data = request.get_data()
+    data = get_blocks(json_data)
+    try:
+        img = render_blocks_data(data)
+    except ValueError as e:
+        return Response(str(e.args), status=400)
+    imgByteArr = io.BytesIO()
+    img_resized = img.resize((img.width * 8, img.height * 8))
+    img_resized.save(imgByteArr, format='PNG')
+    return Response(imgByteArr.getvalue(), status=200, mimetype="image/png")
+
+# TODO: REFRACTOR THE CRAP OUT OF IT

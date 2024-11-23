@@ -55,7 +55,6 @@ class DisplayData(BaseModel):
 
     addition: Optional[Addition] = None
     lines: Optional[list[TextLine]] = None
-    blocks: Optional[list[Block]] = None
 
 class CharD(BaseModel):
     model_config = ConfigDict()
@@ -78,6 +77,10 @@ class PxFont(BaseModel):
 
 def get_display_data(json_data: str) -> DisplayData:
     return DisplayData.model_validate_json(json_data)
+
+def get_blocks(json_data: str) -> list[Block]:
+    ta = TypeAdapter(list[Block])
+    return ta.validate_json(json_data)
 
 def get_fonts(json_data: bytes) -> list[PxFont]:
     ta = TypeAdapter(list[PxFont])
