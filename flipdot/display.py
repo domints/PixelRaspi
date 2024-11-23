@@ -6,6 +6,19 @@ import numpy as np
 
 bp = Blueprint('display', __name__, url_prefix='/display')
 
+def display_data_block(page: int, data: str) -> str | None:
+    retryCount = 3
+    err: str | None = None
+    while retryCount > 0:
+        try:
+            pixel.display_data_block(page, data)
+            err = None
+            retryCount = 0
+        except ValueError as e:
+            err = e.args
+            retryCount -= 1
+    return err
+
 @bp.route('/image', methods = ['POST'])
 def upload_file():
     imageFile = request.files['file']
@@ -13,8 +26,8 @@ def upload_file():
     img = Image.open(imageFile.stream)
     imgArr = np.asarray(img)
     data = pixel.create_data_block(pixel.get_image_data(imgArr, page=page))
-    resp = pixel.display_data_block(0, data)
-    if resp is None:
+    resp = display_data_block(0, data)
+    if resp is not None:
         return Response(resp, status=500)
     return Response(status=200)
 
@@ -32,7 +45,7 @@ def text():
     fontDef.drawText(img, 0, 0 + fontDef.topOffset, value, (255))
     imgArr = np.asarray(img)
     data = pixel.create_data_block(pixel.get_image_data(imgArr, page=page))
-    resp = pixel.display_data_block(0, data)
+    resp = display_data_block(0, data)
     if resp is not None:
         return Response(resp, status=500)
     return Response(status=200)
@@ -48,16 +61,7 @@ def complex():
         return Response(str(e.args), status=400)
     imgArr = np.asarray(img)
     data = pixel.create_data_block(pixel.get_image_data(imgArr, page=page))
-    retryCount = 3
-    err: str | None = None
-    while retryCount > 0:
-        try:
-            pixel.display_data_block(0, data)
-            err = None
-            retryCount = 0
-        except ValueError as e:
-            err = e.args
-            retryCount -= 1
+    err = display_data_block(0, data)
     if err is not None:
         return Response(err, status=500)
     return Response(status=200)
