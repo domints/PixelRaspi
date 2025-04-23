@@ -3,7 +3,7 @@ import codecs
 from typing import Any, Dict, Optional
 from flask import Blueprint, request, Response
 from flipdot.block_helpers import render_blocks_data
-from flipdot.connector import get_dimensions
+from flipdot.connector import get_dimensions, validate_id, default_id
 from flipdot.models import CharD, DisplayData, AdditionType, PxFont, TextAlign, get_blocks, get_display_data
 import io
 import json
@@ -215,8 +215,8 @@ def draw_icon(displayImage: Image.Image, name: str, x: int, y: int, invert: bool
     return icon.width
 
 
-def render_display_data(data: DisplayData) -> Image.Image:
-    dimensions = get_dimensions()
+def render_display_data(displayId: int, data: DisplayData) -> Image.Image:
+    dimensions = get_dimensions(displayId)
     img = Image.new("1", dimensions, (0))
     left_text_margin = 0
     if data.addition is not None:
@@ -262,10 +262,11 @@ def get_icons():
 
 @bp.route("/render_text", methods=["POST"])
 def get_rendered_text():
+    id = validate_id(request.args.get("id", default=default_id, type=int))
     json_data = request.get_data()
     data = get_display_data(json_data)
     try:
-        img = render_display_data(data)
+        img = render_display_data(id, data)
     except ValueError as e:
         return Response(str(e.args), status=400)
     imgByteArr = io.BytesIO()

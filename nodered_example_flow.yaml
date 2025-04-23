@@ -1,0 +1,2265 @@
+[
+    {
+        "id": "010055504f2b95b1",
+        "type": "tab",
+        "label": "Flipdot TDMA v2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "74fa06335775797e",
+        "type": "group",
+        "z": "010055504f2b95b1",
+        "name": "Flipdot/Flow Debug pieces",
+        "style": {
+            "label": true,
+            "stroke": "#777777",
+            "fill": "#bfbfbf",
+            "color": "#000000"
+        },
+        "nodes": [
+            "b0b035f8a1027c31",
+            "588f61bc393b95eb",
+            "deb3abb82c2e8235",
+            "82ce852805cf73bd",
+            "2db01ca728213ed0",
+            "f16694846455bec1"
+        ],
+        "x": 14,
+        "y": 19,
+        "w": 1022,
+        "h": 82
+    },
+    {
+        "id": "5ee0d5a70fee1ac3",
+        "type": "group",
+        "z": "010055504f2b95b1",
+        "name": "Maintenance",
+        "style": {
+            "stroke": "#ffff00",
+            "fill": "#ffffbf",
+            "label": true
+        },
+        "nodes": [
+            "7dcce32e27d3a1cb",
+            "b4a0bed7e3b772b3",
+            "8cd92ed0a52dca5e",
+            "806c4584284b161f",
+            "dd5fba792e8a3723",
+            "77c844a75f2232fb"
+        ],
+        "x": 14,
+        "y": 279,
+        "w": 732,
+        "h": 142
+    },
+    {
+        "id": "e602ec233cedd70d",
+        "type": "group",
+        "z": "010055504f2b95b1",
+        "name": "Timeslot processing",
+        "style": {
+            "stroke": "#addb7b",
+            "fill": "#e3f3d3",
+            "label": true
+        },
+        "nodes": [
+            "d3dbcde272acc74e",
+            "02c483bcedae6633",
+            "e64c4e2212244cdd",
+            "40221c9bacf2ecc8",
+            "71f7d40d8fab69ac",
+            "fc12ad9eef5fe660",
+            "6bf81d0229ed6d61",
+            "e46d58a13d233c54"
+        ],
+        "x": 14,
+        "y": 439,
+        "w": 732,
+        "h": 162
+    },
+    {
+        "id": "1f87b7d3aa222e70",
+        "type": "group",
+        "z": "010055504f2b95b1",
+        "name": "Flipdot Output",
+        "style": {
+            "stroke": "#92d04f",
+            "fill": "#addb7b",
+            "label": true,
+            "color": "#ffffff"
+        },
+        "nodes": [
+            "8b4823fcd24f4c5f",
+            "d3ccbda8db8ccef6",
+            "6fd7562392f212fe",
+            "2447d2751f2c748a",
+            "94c10ea85c81b581",
+            "8b5c206575abf7b1",
+            "5b7fafddc87c7c29",
+            "ad03ae74dc398c52",
+            "6f608b8664047b21",
+            "5c234b3e04df313b",
+            "5d05c243cd2528a8",
+            "7cc5d3e81a6fac98"
+        ],
+        "x": 14,
+        "y": 119,
+        "w": 1032,
+        "h": 142
+    },
+    {
+        "id": "6cc0c97588eef436",
+        "type": "group",
+        "z": "010055504f2b95b1",
+        "name": "Const string",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "d73b8c7299403270",
+            "c63b9792ad75238b",
+            "cf1388e62e1cd1ba"
+        ],
+        "x": 394,
+        "y": 619,
+        "w": 352,
+        "h": 82
+    },
+    {
+        "id": "19395bd05a38ad8c",
+        "type": "group",
+        "z": "010055504f2b95b1",
+        "name": "Time",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "ea78584c7a7225ee",
+            "034f4827408f2206",
+            "e6bdfdb32f3740bf"
+        ],
+        "x": 14,
+        "y": 619,
+        "w": 362,
+        "h": 82
+    },
+    {
+        "id": "823376aa11a9f2e3",
+        "type": "group",
+        "z": "010055504f2b95b1",
+        "name": "Subslot number",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "ba086768df0bd969",
+            "3d22d209e1741661",
+            "e38029e655a84ba8",
+            "973b7aa56a7b74d9",
+            "092f9df2b6c6d0f8",
+            "47dc56a6f735d0e0"
+        ],
+        "x": 14,
+        "y": 719,
+        "w": 362,
+        "h": 142
+    },
+    {
+        "id": "ba75520d5a684561",
+        "type": "group",
+        "z": "010055504f2b95b1",
+        "name": "2137",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "acb0b836906ed0b9",
+            "02e0cb79791bdb4d",
+            "e63b7cb201502dd0",
+            "c710b7f6d28e982d",
+            "99792d4293e5e61d",
+            "eb36cbbd0b3a681a"
+        ],
+        "x": 394,
+        "y": 719,
+        "w": 352,
+        "h": 142
+    },
+    {
+        "id": "16f852736f601efe",
+        "type": "group",
+        "z": "010055504f2b95b1",
+        "name": "Flipdot MPK Timetable",
+        "style": {
+            "stroke": "#3f93cf",
+            "fill": "#bfdbef",
+            "label": true,
+            "color": "#7f7f7f"
+        },
+        "nodes": [
+            "a3119b548217a5e4",
+            "53911ee8bce29128",
+            "b784a02e06633c41",
+            "9e5d993d83af7cf6",
+            "e3015fbdcda6f1a5",
+            "a0440e14aba07b7b",
+            "cc80b4ecb9e96757",
+            "fef52828a08a559f",
+            "e061567b65adcf8e",
+            "926dc5a64935960b"
+        ],
+        "x": 14,
+        "y": 879,
+        "w": 732,
+        "h": 142
+    },
+    {
+        "id": "41515786f0445fee",
+        "type": "group",
+        "z": "010055504f2b95b1",
+        "name": "Now Playing",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "8aaca6a0e3f4f72f",
+            "65282ec890e7ed82",
+            "5694ff72a68542e0",
+            "46374cdbe5da3abc",
+            "39ec2b4d88b77b4c"
+        ],
+        "x": 14,
+        "y": 1039,
+        "w": 362,
+        "h": 142
+    },
+    {
+        "id": "88d9f3e322b40176",
+        "type": "group",
+        "z": "010055504f2b95b1",
+        "name": "Custom Text @ /flipdot",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "5bc0695c4c74aeab",
+            "f19473371e5cf76e",
+            "3b6856a5a5783c10",
+            "fbc1608d6c0d75df",
+            "c71095899e4c3041",
+            "944ce27f19478a31",
+            "086a21f3dbb9a33f",
+            "a447a59628ac4760",
+            "49b883d90623f7a5",
+            "4555f8de8f4c30fc",
+            "63d0b0c84b8b2d94",
+            "a20fea1516b7ed3b",
+            "611852f06e2b0e59",
+            "a484e021a1218cef",
+            "f7e99930a657bd97",
+            "971bff530638b104",
+            "dc2efe8529deceb4",
+            "a8a1980fe9b3c58b",
+            "b042fce4803d1a4d",
+            "fcccbd9d3126b67b",
+            "059f9ec2b6d12c1e"
+        ],
+        "x": 774,
+        "y": 539,
+        "w": 732,
+        "h": 442
+    },
+    {
+        "id": "a8bfc79882450461",
+        "type": "group",
+        "z": "010055504f2b95b1",
+        "name": "Now printing",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "420cf65fea44028f",
+            "cd8c7cccc6d8c83f",
+            "ed6a86c16188ef98",
+            "f8d6c662cd17f3c0",
+            "f2e85fed950c98b0"
+        ],
+        "x": 404,
+        "y": 1039,
+        "w": 342,
+        "h": 142
+    },
+    {
+        "id": "a80909e91e345b98",
+        "type": "group",
+        "z": "010055504f2b95b1",
+        "name": "Power consumption",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "8f472ec4a9d3a504",
+            "d8f83eba5004fb24",
+            "e2ea21b0dac0cf96",
+            "a7aa9d17dd1a5d02",
+            "ef02bb2e0de9f179",
+            "e2e6b3c9b22ccf28",
+            "d6a8f684a4c106a7"
+        ],
+        "x": 14,
+        "y": 1199,
+        "w": 732,
+        "h": 142
+    },
+    {
+        "id": "4aa742838338beb0",
+        "type": "group",
+        "z": "010055504f2b95b1",
+        "name": "TDMA On/Off",
+        "style": {
+            "fill": "#bfc7d7",
+            "label": true
+        },
+        "nodes": [
+            "20496c63e08a3118",
+            "cbec3a5f161f7863",
+            "ba889b8eb28c9a42",
+            "d098b11588956ae7",
+            "d4f254fce9e5e9fd"
+        ],
+        "x": 764,
+        "y": 279,
+        "w": 542,
+        "h": 242
+    },
+    {
+        "id": "71f7d40d8fab69ac",
+        "type": "inject",
+        "z": "010055504f2b95b1",
+        "g": "e602ec233cedd70d",
+        "name": "trigger",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "object",
+        "payloadType": "date",
+        "x": 120,
+        "y": 500,
+        "wires": [
+            [
+                "40221c9bacf2ecc8"
+            ]
+        ]
+    },
+    {
+        "id": "806c4584284b161f",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "5ee0d5a70fee1ac3",
+        "name": "Setup Node. Contains settings. Click on \"Once\" after changing.",
+        "func": "flow.set(\"timeslot\", 0);\n// Setup for clock to save allocations or sth\nvar intlOptions = {\n    year: \"2-digit\",\n    month: \"2-digit\",\n    day: \"2-digit\",\n    hour: \"2-digit\",\n    minute: \"2-digit\",\n    second: \"2-digit\",\n    hour12: false,\n    timeZone: \"Europe/Warsaw\",\n};\nvar dateTimeFormatter = new Intl.DateTimeFormat(\"pl-PL\", intlOptions);\nflow.set(\"clock_formatter\", dateTimeFormatter);\n\n// Setup modules list\nvar modules = [\n    {\n        name: 'Flipdot_Time',\n        in_node: 'Flipdot_Time_In'\n    },\n    { // Make sure this module is not first module, otherwise it'll crash when no texts are there :D\n        name: 'Flipdot_PermWebText',\n        in_node: 'Flipdot_PermWebText_In'\n    },\n    // {\n    //     name: 'Flipdot_MPK_Const',\n    //     in_node: 'Flipdot_MPK_Const_In'\n    // },\n    // {\n    //     name: 'Flipdot_MPK',\n    //     in_node: 'Flipdot_MPK_In',\n    //     prepare_node: 'Flipdot_MPK_Prepare'\n    // },\n    {\n        name: 'Flipdot_Time',\n        in_node: 'Flipdot_Time_In'\n    },\n    // {\n    //     name: 'Flipdot_Const',\n    //     in_node: 'Flipdot_Const_In'\n    // },\n    {\n        name: 'Flipdot_NowPlaying',\n        in_node: 'Flipdot_NowPlaying_In'\n    },\n    {\n        name: 'Flipdot_NowPrinting',\n        in_node: 'Flipdot_NowPrinting_In'\n    },\n    {\n        name: 'Flipdot_PowerConsumption',\n        in_node: 'Flipdot_PowerConsumption_In',\n        prepare_node: 'Flipdot_PowerConsumption_Prepare'\n    }\n    /*{\n        name: 'Flipdot_Subslot',\n        in_node: 'Flipdot_Subslot_In',\n        prepare_node: 'Flipdot_Subslot_Prepare'\n    }*/\n];\nvar interruptModules = [\n    {\n        name: 'Flipdot_2137',\n        in_node: 'Flipdot_2137_In',\n        checkNode: 'Flipdot_2137_Check'\n    },\n    {\n        name: 'Flipdot_WebText',\n        in_node: 'Flipdot_WebText_In',\n        checkNode: 'Flipdot_WebText_Check'\n    }\n];\nflow.set(\"modules\", modules);\nflow.set(\"interrupt_modules\", interruptModules);\nflow.set(\"Flipdot_Time_Slots\", 2);\nflow.set(\"Flipdot_Const_Slots\", 2);\nflow.set(\"Flipdot_MPK_Const_Slots\", 1);\nflow.set(\"Flipdot_2137_Slots\", 3);\n\nvar chkFns = []\nfor (let m of interruptModules) {\n    chkFns.push({\n        target: m.checkNode,\n        payload: m.name\n    })\n}\n\nreturn [msg, chkFns];",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 320,
+        "wires": [
+            [
+                "8cd92ed0a52dca5e"
+            ],
+            [
+                "dd5fba792e8a3723"
+            ]
+        ]
+    },
+    {
+        "id": "f16694846455bec1",
+        "type": "debug",
+        "z": "010055504f2b95b1",
+        "g": "74fa06335775797e",
+        "name": "tdma_v2_flow_var",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "82ce852805cf73bd",
+        "type": "complete",
+        "z": "010055504f2b95b1",
+        "g": "74fa06335775797e",
+        "name": "",
+        "scope": [
+            "806c4584284b161f"
+        ],
+        "uncaught": false,
+        "x": 560,
+        "y": 60,
+        "wires": [
+            [
+                "2db01ca728213ed0"
+            ]
+        ]
+    },
+    {
+        "id": "2db01ca728213ed0",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "74fa06335775797e",
+        "name": "DBG FLOW",
+        "func": "var keys = flow.keys();\nlet pld = {};\nfor (let k of keys) {\n    pld[k] = flow.get(k);\n}\nreturn { payload: pld };",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 60,
+        "wires": [
+            [
+                "f16694846455bec1"
+            ]
+        ]
+    },
+    {
+        "id": "034f4827408f2206",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "19395bd05a38ad8c",
+        "name": "Time string",
+        "func": "var payload = (pld) => ({ payload: pld, _linkSource: msg._linkSource });\n\nvar formatter = /** @type {Intl.DateTimeFormat} **/(flow.get(\"clock_formatter\"));\nvar date = msg.payload.date;\n\nvar parts = formatter.formatToParts(date);\nvar time = {}\nfor (let part of parts) {\n    if (part.type == \"literal\")\n        continue;\n    time[part.type] = part.value;\n}\n\nif (msg.payload.subslot == 0) {\n    var timeString = `${time.day}.${time.month}.${time.year} ${time.hour}:${time.minute}`;\n\n    let pld = {\n        \"lines\": [\n            {\n                \"text\": timeString,\n                \"font\": \"(14) LED 120x16 CHUDE\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        ]\n    };\n\n    return payload(pld);\n}\n\n\nreturn payload(null);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 660,
+        "wires": [
+            [
+                "e6bdfdb32f3740bf"
+            ]
+        ]
+    },
+    {
+        "id": "b0b035f8a1027c31",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "74fa06335775797e",
+        "name": "Flipdot_Display_Dbg",
+        "links": [
+            "d3dbcde272acc74e"
+        ],
+        "x": 55,
+        "y": 60,
+        "wires": [
+            [
+                "588f61bc393b95eb"
+            ]
+        ]
+    },
+    {
+        "id": "588f61bc393b95eb",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "74fa06335775797e",
+        "name": "Cmplx DBG",
+        "func": "let l1 = null;\nlet l2 = null;\nlet add = null;\nif (msg.payload.lines && msg.payload.lines.length) {\n    l1 = msg.payload.lines[0].text;\n    if (msg.payload.lines.length > 1) {\n        l2 = msg.payload.lines[1].text;\n    }\n}\nif (msg.payload.addition) {\n    if (msg.payload.addition.addition_type == 'icon') {\n        add = msg.payload.addition.icon;\n    }\n    if (msg.payload.addition.addition_type == 'text') {\n        add = msg.payload.addition.text;\n    }\n}\nreturn {\n    payload:{\n        line1: l1,\n        line2: l2,\n        add: add\n    }\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 60,
+        "wires": [
+            [
+                "deb3abb82c2e8235"
+            ]
+        ]
+    },
+    {
+        "id": "deb3abb82c2e8235",
+        "type": "debug",
+        "z": "010055504f2b95b1",
+        "g": "74fa06335775797e",
+        "name": "FPDT_DBG",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "e6bdfdb32f3740bf",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "19395bd05a38ad8c",
+        "name": "Flipdot_Time_Out",
+        "mode": "return",
+        "links": [],
+        "x": 335,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "ea78584c7a7225ee",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "19395bd05a38ad8c",
+        "name": "Flipdot_Time_In",
+        "links": [],
+        "x": 55,
+        "y": 660,
+        "wires": [
+            [
+                "034f4827408f2206"
+            ]
+        ]
+    },
+    {
+        "id": "d73b8c7299403270",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "6cc0c97588eef436",
+        "name": "Flipdot_Const_In",
+        "links": [],
+        "x": 435,
+        "y": 660,
+        "wires": [
+            [
+                "c63b9792ad75238b"
+            ]
+        ]
+    },
+    {
+        "id": "cf1388e62e1cd1ba",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "6cc0c97588eef436",
+        "name": "Flipdot_Const_Out",
+        "mode": "return",
+        "links": [],
+        "x": 705,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "c63b9792ad75238b",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "6cc0c97588eef436",
+        "name": "Const string",
+        "func": "var payload = (pld) => ({payload: pld, _linkSource: msg._linkSource });\n\nif (msg.payload.subslot == 0) {\n    let pld = {\n        \"lines\": [\n            {\n                \"text\": \"HSKRK WITA\",\n                \"font\": \"(14) LED 120x16 CHUDE\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        ]\n    };\n\n    return payload(pld);\n}\n\nreturn payload(null);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 660,
+        "wires": [
+            [
+                "cf1388e62e1cd1ba"
+            ]
+        ]
+    },
+    {
+        "id": "e64c4e2212244cdd",
+        "type": "link call",
+        "z": "010055504f2b95b1",
+        "g": "e602ec233cedd70d",
+        "name": "",
+        "links": [
+            "d73b8c7299403270"
+        ],
+        "linkType": "dynamic",
+        "timeout": "1",
+        "x": 455,
+        "y": 480,
+        "wires": [
+            [
+                "02c483bcedae6633"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "02c483bcedae6633",
+        "type": "switch",
+        "z": "010055504f2b95b1",
+        "g": "e602ec233cedd70d",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "null",
+                "vt": "jsonata"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 535,
+        "y": 480,
+        "wires": [
+            [
+                "6bf81d0229ed6d61"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "d3dbcde272acc74e",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "e602ec233cedd70d",
+        "name": "Display Out",
+        "mode": "link",
+        "links": [
+            "b0b035f8a1027c31",
+            "8b4823fcd24f4c5f"
+        ],
+        "x": 705,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "7dcce32e27d3a1cb",
+        "type": "inject",
+        "z": "010055504f2b95b1",
+        "g": "5ee0d5a70fee1ac3",
+        "name": "Once",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 320,
+        "wires": [
+            [
+                "806c4584284b161f"
+            ]
+        ]
+    },
+    {
+        "id": "ba086768df0bd969",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "823376aa11a9f2e3",
+        "name": "Flipdot_Subslot_In",
+        "links": [],
+        "x": 55,
+        "y": 760,
+        "wires": [
+            [
+                "3d22d209e1741661"
+            ]
+        ]
+    },
+    {
+        "id": "e38029e655a84ba8",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "823376aa11a9f2e3",
+        "name": "Flipdot_Subslot_Out",
+        "mode": "return",
+        "links": [],
+        "x": 335,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "3d22d209e1741661",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "823376aa11a9f2e3",
+        "name": "Subslot display",
+        "func": "var payload = (pld) => ({payload: pld, _linkSource: msg._linkSource });\n\n    let pld = {\n        \"lines\": [\n            {\n                \"text\": `Subslot: ${msg.payload.subslot}`,\n                \"font\": \"(14) LED 120x16 CYR\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        ]\n    };\n\n    return payload(pld);\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 760,
+        "wires": [
+            [
+                "e38029e655a84ba8"
+            ]
+        ]
+    },
+    {
+        "id": "973b7aa56a7b74d9",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "823376aa11a9f2e3",
+        "name": "Flipdot_Subslot_Prepare",
+        "links": [],
+        "x": 55,
+        "y": 820,
+        "wires": [
+            [
+                "092f9df2b6c6d0f8"
+            ]
+        ]
+    },
+    {
+        "id": "092f9df2b6c6d0f8",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "823376aa11a9f2e3",
+        "name": "Subslot prepare",
+        "func": "var payload = (pld) => ({ payload: pld, _linkSource: msg._linkSource });\nfunction getRandomInt(max) {\n    return Math.floor(Math.random() * max);\n}\n\nflow.set(\"Flipdot_Subslot_Slots\", getRandomInt(6));\nreturn payload(null);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 820,
+        "wires": [
+            [
+                "47dc56a6f735d0e0"
+            ]
+        ]
+    },
+    {
+        "id": "40221c9bacf2ecc8",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "e602ec233cedd70d",
+        "name": "Process slots",
+        "func": "var modules = /** @type {Array} **/(flow.get(\"modules\"));\nvar interruptModules = /** @type {Array} **/(flow.get(\"interrupt_modules\"));\nvar timeslot = flow.get(\"timeslot\");\nvar slowMode = flow.get(\"SlowDisplay\");\nvar prep_nodes = [];\nvar currentModuleIndex = flow.get(\"currentModule\");\nvar remainingSubSlots = flow.get(\"remainingSubSlots\");\nvar currentInterruptModule = flow.get(\"currentInterruptModule\");\nvar remainingInterruptModuleSlots = flow.get(\"remainingInterruptModuleSlots\");\n// TODO: Implement running of interrupt modules\nvar imSlots = undefined;\n\nvar outOfInterrupt = false;\n\nif (currentInterruptModule !== undefined) {\n    if (!remainingInterruptModuleSlots) {\n        currentInterruptModule = undefined;\n        flow.set(\"currentInterruptModule\", undefined);\n        outOfInterrupt = true;\n    }\n}\n\nif (currentInterruptModule === undefined) {\n    for (let imIx in interruptModules) {\n        let im = interruptModules[imIx];\n        if (im.checkFn && im.checkFn(msg.payload)) {\n            let slots = flow.get(im.name + '_Slots');\n            if (!slots) \n                continue;\n            imSlots = slots;\n            currentInterruptModule = imIx;\n            flow.set(\"currentInterruptModule\", currentInterruptModule);\n            remainingInterruptModuleSlots = slots;\n        }\n    }\n}\n\nif (currentInterruptModule !== undefined) {\n    if (!remainingInterruptModuleSlots) {\n        currentInterruptModule = undefined;\n        flow.set(\"currentInterruptModule\", undefined);\n        outOfInterrupt = true;\n    }\n    else {\n        let im = interruptModules[currentInterruptModule];\n        let subslot = flow.get(im.name + '_Slots') - remainingInterruptModuleSlots;\n        remainingInterruptModuleSlots -= 1;\n        flow.set(\"remainingInterruptModuleSlots\", remainingInterruptModuleSlots);\n\n        return [{\n            target: im.in_node,\n            payload: {\n                date: msg.payload,\n                subslot: subslot\n            }\n        }, null]\n    }\n}\n\nif (slowMode == true && (timeslot % 30) != 0) {\n    timeslot += 1;\n    flow.set(\"timeslot\", timeslot);\n    var lastDisplay = flow.get(\"LastDisplay\");\n    if (outOfInterrupt && lastDisplay) {\n        return [ null, null, { payload: lastDisplay } ];\n    }\n    else {\n        return null;\n    }\n}\n\nif (currentModuleIndex === undefined) currentModuleIndex = -1;\nif (remainingSubSlots === undefined) remainingSubSlots = 0;\n\nwhile (remainingSubSlots == 0) {\n    currentModuleIndex += 1;\n    if (currentModuleIndex >= modules.length) {\n        currentModuleIndex = 0;\n        timeslot = 0;\n    }\n    \n    remainingSubSlots = flow.get(modules[currentModuleIndex].name + '_Slots');\n    if (!remainingSubSlots) {\n        remainingSubSlots = 0\n    }\n\n    if (currentModuleIndex == 0 && remainingSubSlots == 0) {\n        node.error(\"Couldn't find working module.\", msg);\n        return null;\n    }\n}\n\nvar currentSubslot = flow.get(modules[currentModuleIndex].name + '_Slots') - remainingSubSlots;\nremainingSubSlots -= 1;\nflow.set(\"remainingSubSlots\", remainingSubSlots);\nflow.set(\"currentModule\", currentModuleIndex);\nvar display_node = modules[currentModuleIndex].in_node;\n\nif (timeslot == 0) {\n    var preparationNodes = modules.filter(m => m.prepare_node).map(m => m.prepare_node);\n    for (let n of preparationNodes) {\n        prep_nodes.push(n);\n    }\n}\n\ntimeslot += 1;\nflow.set(\"timeslot\", timeslot);\n\nvar prep_msgs = [];\n\nfor (let node of prep_nodes) {\n    prep_msgs.push({\n        target: node,\n        payload: {\n            date: msg.payload\n        }\n    });\n}\n\nreturn [\n    {\n        target: display_node,\n        payload: {\n            date: msg.payload,\n            subslot: currentSubslot\n        }\n    },\n    prep_msgs,\n    null\n];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 500,
+        "wires": [
+            [
+                "e64c4e2212244cdd"
+            ],
+            [
+                "fc12ad9eef5fe660"
+            ],
+            [
+                "e46d58a13d233c54"
+            ]
+        ]
+    },
+    {
+        "id": "b4a0bed7e3b772b3",
+        "type": "inject",
+        "z": "010055504f2b95b1",
+        "g": "5ee0d5a70fee1ac3",
+        "name": "Reset",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 380,
+        "wires": [
+            [
+                "8cd92ed0a52dca5e"
+            ]
+        ]
+    },
+    {
+        "id": "8cd92ed0a52dca5e",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "5ee0d5a70fee1ac3",
+        "name": "Reset values",
+        "func": "flow.set(\"currentModule\", undefined);\nflow.set(\"remainingSubSlots\", undefined);\nflow.set(\"timeslot\", 0);\nflow.set(\"SkipDisplay\", false);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "47dc56a6f735d0e0",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "823376aa11a9f2e3",
+        "name": "Flipdot_Subslot_Prep_Out",
+        "mode": "return",
+        "links": [],
+        "x": 335,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "a3119b548217a5e4",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "16f852736f601efe",
+        "name": "Flipdot_MPK_In",
+        "links": [],
+        "x": 55,
+        "y": 980,
+        "wires": [
+            [
+                "9e5d993d83af7cf6"
+            ]
+        ]
+    },
+    {
+        "id": "53911ee8bce29128",
+        "type": "http request",
+        "z": "010055504f2b95b1",
+        "g": "16f852736f601efe",
+        "name": "GET departures",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://gtfs.dszymanski.pl/departures/stop/3242",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 240,
+        "y": 920,
+        "wires": [
+            [
+                "b784a02e06633c41"
+            ]
+        ]
+    },
+    {
+        "id": "b784a02e06633c41",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "16f852736f601efe",
+        "name": "Process departures",
+        "func": "var payload = (pld) => ({ payload: pld, _linkSource: msg._linkSource });\n\nvar relevant = msg.payload.departures.filter((d) => d.relativeTime > 500);\nvar mapped = relevant.map((d) => ({ line: d.line, direction: d.direction, time: d.timeString }));\nflow.set('mpk_departures', mapped);\nvar slotCount = Math.floor((mapped.length / 2));\nif (mapped.length % 2 || slotCount == 0) slotCount += 1;\nif (slotCount > 10) slotCount = 10;\nflow.set(\"Flipdot_MPK_Slots\", slotCount);\nreturn payload(null);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 920,
+        "wires": [
+            [
+                "cc80b4ecb9e96757"
+            ]
+        ]
+    },
+    {
+        "id": "9e5d993d83af7cf6",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "16f852736f601efe",
+        "name": "Display Departures",
+        "func": "var payload = (pld) => ({ payload: pld, _linkSource: msg._linkSource });\n\nvar subslot = msg.payload.subslot;\nif (!subslot) subslot = 0;\nvar allDepartures = flow.get('mpk_departures');\nvar departures =  allDepartures.slice((subslot * 2), (subslot * 2) + 2);\n\nvar dep1 = departures.slice(0, 1);\nvar dep2 = departures.slice(1, 2);\nvar depToLine = (dep, isFirst) => {\n    if (!dep || dep.length == 0) {\n        if (isFirst) return \"Brak dalszych przej\";\n        return \"\";\n    }\n    var d = dep[0];\n    var line = d.line.toString();\n    if (dep.line < 100) line = line + ' ';\n    var direction = d.direction.substr(0, 9);\n    while (direction.len < 9) {\n        direction = direction + ' ';\n    }\n    return `${line} ${direction} ${d.time}`\n}\n\nlet pld = {\n    \"lines\": [\n        {\n            \"text\": depToLine(dep1, true),\n            \"font\": \"(6) XTL8\",\n            \"invert\": false,\n            \"auto_break\": false,\n            \"align\": \"left\"\n        },\n        {\n            \"text\": depToLine(dep2, false),\n            \"font\": \"(6) XTL8\",\n            \"invert\": false,\n            \"auto_break\": false,\n            \"align\": \"left\"\n        }\n    ]\n}\n\nreturn payload(pld);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 210,
+        "y": 980,
+        "wires": [
+            [
+                "e3015fbdcda6f1a5"
+            ]
+        ]
+    },
+    {
+        "id": "e3015fbdcda6f1a5",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "16f852736f601efe",
+        "name": "Flipdot_MPK_Out",
+        "mode": "return",
+        "links": [],
+        "x": 355,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "a0440e14aba07b7b",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "16f852736f601efe",
+        "name": "Flipdot_MPK_Prepare",
+        "links": [],
+        "x": 55,
+        "y": 920,
+        "wires": [
+            [
+                "53911ee8bce29128"
+            ]
+        ]
+    },
+    {
+        "id": "cc80b4ecb9e96757",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "16f852736f601efe",
+        "name": "Flipdot_MPK_Prep_Out",
+        "mode": "return",
+        "links": [],
+        "x": 705,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "8b4823fcd24f4c5f",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "1f87b7d3aa222e70",
+        "name": "Flipdot_Output_Req",
+        "links": [
+            "d3dbcde272acc74e",
+            "e46d58a13d233c54"
+        ],
+        "x": 55,
+        "y": 160,
+        "wires": [
+            [
+                "7cc5d3e81a6fac98"
+            ]
+        ]
+    },
+    {
+        "id": "d3ccbda8db8ccef6",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "1f87b7d3aa222e70",
+        "name": "Build RQ",
+        "func": "return { \n    method: 'POST',\n    url: 'http://pixel-raspi:5000/display/complex?page=0',\n    payload: msg.payload\n    };",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 160,
+        "wires": [
+            [
+                "6fd7562392f212fe"
+            ]
+        ]
+    },
+    {
+        "id": "6fd7562392f212fe",
+        "type": "http request",
+        "z": "010055504f2b95b1",
+        "g": "1f87b7d3aa222e70",
+        "name": "",
+        "method": "use",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": true,
+        "headers": [],
+        "x": 550,
+        "y": 160,
+        "wires": [
+            [
+                "8b5c206575abf7b1",
+                "2447d2751f2c748a"
+            ]
+        ]
+    },
+    {
+        "id": "2447d2751f2c748a",
+        "type": "switch",
+        "z": "010055504f2b95b1",
+        "g": "1f87b7d3aa222e70",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "200",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 750,
+        "y": 160,
+        "wires": [
+            [
+                "94c10ea85c81b581"
+            ]
+        ]
+    },
+    {
+        "id": "94c10ea85c81b581",
+        "type": "debug",
+        "z": "010055504f2b95b1",
+        "g": "1f87b7d3aa222e70",
+        "name": "Flipdot ERR",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "8b5c206575abf7b1",
+        "type": "debug",
+        "z": "010055504f2b95b1",
+        "g": "1f87b7d3aa222e70",
+        "name": "Flipdot ALL",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 715,
+        "y": 220,
+        "wires": [],
+        "icon": "font-awesome/fa-bug",
+        "l": false
+    },
+    {
+        "id": "fc12ad9eef5fe660",
+        "type": "link call",
+        "z": "010055504f2b95b1",
+        "g": "e602ec233cedd70d",
+        "name": "Prep call",
+        "links": [],
+        "linkType": "dynamic",
+        "timeout": "5",
+        "x": 500,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e061567b65adcf8e",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "16f852736f601efe",
+        "name": "Flipdot_MPK_Const_In",
+        "links": [],
+        "x": 425,
+        "y": 980,
+        "wires": [
+            [
+                "fef52828a08a559f"
+            ]
+        ]
+    },
+    {
+        "id": "fef52828a08a559f",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "16f852736f601efe",
+        "name": "Const string",
+        "func": "var payload = (pld) => ({payload: pld, _linkSource: msg._linkSource });\n\nif (msg.payload.subslot == 0) {\n    let pld = {\n        \"lines\": [\n            {\n                \"text\": \"Rozkład jazdy\",\n                \"font\": \"9_kolej\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            },\n            {\n                \"text\": \"Teatr Słowackiego\",\n                \"font\": \"9_kolej\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        ]\n    };\n\n    return payload(pld);\n}\n\nreturn payload(null);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 980,
+        "wires": [
+            [
+                "926dc5a64935960b"
+            ]
+        ]
+    },
+    {
+        "id": "926dc5a64935960b",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "16f852736f601efe",
+        "name": "Flipdot_MPK_Const_Out",
+        "mode": "return",
+        "links": [],
+        "x": 705,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "acb0b836906ed0b9",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "ba75520d5a684561",
+        "name": "Flipdot_2137_In",
+        "links": [],
+        "x": 435,
+        "y": 820,
+        "wires": [
+            [
+                "02e0cb79791bdb4d"
+            ]
+        ]
+    },
+    {
+        "id": "02e0cb79791bdb4d",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "ba75520d5a684561",
+        "name": "Papa string",
+        "func": "var payload = (pld) => ({payload: pld, _linkSource: msg._linkSource });\n\nvar formatter = /** @type {Intl.DateTimeFormat} **/(flow.get(\"clock_formatter\"));\nvar parts = formatter.formatToParts(msg.payload.date);\nvar time = {}\nfor (let part of parts) {\n    if (part.type == \"literal\")\n        continue;\n    time[part.type] = part.value;\n}\nif (msg.payload.subslot == 0) {\n    let pld = {\n        \"lines\": [\n            {\n                \"text\": `${time.hour}:${time.minute}:${time.second}`,\n                \"font\": \"(14) LED 120x16 CYR\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        ]\n    };\n    \n    return payload(pld);\n}\nelse if (msg.payload.subslot == 1) {\n    let pld = {\n        \"lines\": [\n            {\n                \"text\": \"O Panie, to Ty na mnie\",\n                \"font\": \"(9) Cieńkie LITERY\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            },\n            {\n                \"text\": \"spojrzałeś\",\n                \"font\": \"(9) Cieńkie LITERY\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        ]\n    };\n\n    return payload(pld);\n}\nif (msg.payload.subslot == 2) {\n    let pld = {\n        \"lines\": [\n            {\n                \"text\": \"Twoje usta dziś\",\n                \"font\": \"(9) Cieńkie LITERY\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            },\n            {\n                \"text\": \"wyrzekły me imię\",\n                \"font\": \"(9) Cieńkie LITERY\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        ]\n    };\n\n    return payload(pld);\n}\n\nreturn payload(null);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 820,
+        "wires": [
+            [
+                "e63b7cb201502dd0"
+            ]
+        ]
+    },
+    {
+        "id": "e63b7cb201502dd0",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "ba75520d5a684561",
+        "name": "Flipdot_2137_Out",
+        "mode": "return",
+        "links": [],
+        "x": 705,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "c710b7f6d28e982d",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "ba75520d5a684561",
+        "name": "Flipdot_2137_Check",
+        "links": [],
+        "x": 435,
+        "y": 760,
+        "wires": [
+            [
+                "99792d4293e5e61d"
+            ]
+        ]
+    },
+    {
+        "id": "99792d4293e5e61d",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "ba75520d5a684561",
+        "name": "Check Fn",
+        "func": "var payload = (pld) => ({ payload: pld, _linkSource: msg._linkSource });\nvar formatter = /** @type {Intl.DateTimeFormat} **/(flow.get(\"clock_formatter\"));\n\n/**\n * @param {Date} d\n */\nvar fn = (d) => {\n    var parts = formatter.formatToParts(d);\n    var time = {}\n    for (let part of parts) {\n        if (part.type == \"literal\")\n            continue;\n        time[part.type] = part.value;\n    }\n\n    return (time.hour == 21 && time.minute == 36 && (time.second == 58 || time.second == 59));\n}\n\nreturn payload({ fn: fn, name: msg.payload });",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 760,
+        "wires": [
+            [
+                "eb36cbbd0b3a681a"
+            ]
+        ]
+    },
+    {
+        "id": "eb36cbbd0b3a681a",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "ba75520d5a684561",
+        "name": "Flipdot_2137_Check_Out",
+        "mode": "return",
+        "links": [],
+        "x": 705,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "dd5fba792e8a3723",
+        "type": "link call",
+        "z": "010055504f2b95b1",
+        "g": "5ee0d5a70fee1ac3",
+        "name": "Get Chk Fns",
+        "links": [],
+        "linkType": "dynamic",
+        "timeout": "30",
+        "x": 490,
+        "y": 380,
+        "wires": [
+            [
+                "77c844a75f2232fb"
+            ]
+        ]
+    },
+    {
+        "id": "77c844a75f2232fb",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "5ee0d5a70fee1ac3",
+        "name": "Update",
+        "func": "var im = flow.get(\"interrupt_modules\");\nvar name = msg.payload.name;\nvar fn = msg.payload.fn;\nif (!name || !fn) return null;\n\nvar mod = im.find(m => m.name == name);\nif (!mod) return null;\nmod.checkFn = fn;\nflow.set(\"interrupt_modules\", im);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8aaca6a0e3f4f72f",
+        "type": "mqtt in",
+        "z": "010055504f2b95b1",
+        "g": "41515786f0445fee",
+        "name": "chromecast",
+        "topic": "music/chromecast/playing",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 55,
+        "y": 1080,
+        "wires": [
+            [
+                "5694ff72a68542e0"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "5694ff72a68542e0",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "41515786f0445fee",
+        "name": "Store Audio Info",
+        "func": "if (msg.payload.online && msg.payload.data.media_metadata.artist) {\n    flow.set(\"audio_metadata\", {\n        artist: msg.payload.data.media_metadata.artist,\n        title: msg.payload.data.media_metadata.title\n    });\n    flow.set(\"Flipdot_NowPlaying_Slots\", 2);\n}\nelse {\n    flow.set(\"Flipdot_NowPlaying_Slots\", 0);\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "46374cdbe5da3abc",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "41515786f0445fee",
+        "name": "Disp. Aud.",
+        "func": "var payload = (pld) => ({ payload: pld, _linkSource: msg._linkSource });\n\nif (msg.payload.subslot == 0) {\n    let pld = {\n        \"lines\": [\n            {\n                \"text\": \"Now Playing\",\n                \"font\": \"(14) LED 120x16 CHUDE\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        ]\n    };\n\n    return payload(pld);\n}\nelse if (msg.payload.subslot == 1) {\n    var meta = flow.get(\"audio_metadata\");\n    let pld = {\n        \"lines\": [\n            {\n                \"text\": meta.artist,\n                \"font\": \"(9) Cieńkie LITERY\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            },\n            {\n                \"text\": meta.title,\n                \"font\": \"(9) Cieńkie LITERY\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        ]\n    }\n\n    return payload(pld);\n}\n\nreturn payload(null);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 170,
+        "y": 1140,
+        "wires": [
+            [
+                "39ec2b4d88b77b4c"
+            ]
+        ]
+    },
+    {
+        "id": "65282ec890e7ed82",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "41515786f0445fee",
+        "name": "Flipdot_NowPlaying_In",
+        "links": [],
+        "x": 55,
+        "y": 1140,
+        "wires": [
+            [
+                "46374cdbe5da3abc"
+            ]
+        ]
+    },
+    {
+        "id": "39ec2b4d88b77b4c",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "41515786f0445fee",
+        "name": "Flipdot_NowPlaying_Out",
+        "mode": "return",
+        "links": [],
+        "x": 335,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "5bc0695c4c74aeab",
+        "type": "http in",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "",
+        "url": "/flipdot",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 870,
+        "y": 580,
+        "wires": [
+            [
+                "f19473371e5cf76e",
+                "fbc1608d6c0d75df",
+                "a20fea1516b7ed3b",
+                "a484e021a1218cef",
+                "dc2efe8529deceb4"
+            ]
+        ]
+    },
+    {
+        "id": "f19473371e5cf76e",
+        "type": "template",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<!doctype html>\n<html lang=\"pl\">\n\n<head>\n    <title>Flipdot</title>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <style>\n        .row {\n            display: flex;\n        }\n    </style>\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\"\n        integrity=\"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH\" crossorigin=\"anonymous\">\n    <style>\n        .displayMock {\n            font-size: 2rem;\n            background-color: black;\n            color: greenyellow;\n            width: 32rem;\n            height: 4rem;\n        }\n\n        .disp_line {\n            font-size: 1.3rem;\n        }\n\n        .disp_line__single {\n            font-size: 2.6rem;\n        }\n\n        .disp_line__no {\n            display: none;\n        }\n    </style>\n</head>\n\n<body>\n    <div class=\"container\">\n        <div class=\"alert alert-info mt-2\" role=\"alert\">\n            Instrukcję korzystania znajdziesz na <a\n                href=\"https://phabricator.hskrk.pl/w/infrastruktura/wyposazenie/flipdot/\">Phabri</a>.\n        </div>\n        <h3 class=\"mt-2\">\n            Wyświetl coś na flipdocie!\n        </h3>\n        <div class=\"card-group\">\n            <div class=\"card\">\n                <div class=\"card-header\">\n                    Chwilowo (tylko raz)\n                </div>\n                <div class=\"card-body\">\n                    <form onsubmit=\"display(); return false;\">\n                        <div class=\"mb-1 row\">\n                            <label for=\"line1\" class=\"col-sm-2 col-form-label\">Linia 1:</label>\n                            <div class=\"col-sm-10\">\n                                <input type=\"text\" class=\"form-control\" id=\"line1\" name=\"line1\">\n                            </div>\n                        </div>\n                        <div class=\"mb-3 row\">\n                            <label for=\"line2\" class=\"col-sm-2 col-form-label\">Linia 2:</label>\n                            <div class=\"col-sm-10\">\n                                <input type=\"text\" class=\"form-control\" id=\"line2\" name=\"line2\">\n                            </div>\n                            <div class=\"form-text\" id=\"basic-addon4\">Jeśli chcesz wyświetlić tylko jedną linię, pozostaw\n                                drugie pole puste.</div>\n                        </div>\n\n                        <div class=\"mb-1 row\">\n                            <label for=\"slots\" class=\"col-sm-2 col-form-label\">Jak długo:</label>\n                            <div class=\"col-sm-10\">\n                                <input type=\"number\" class=\"form-control\" id=\"slots\" name=\"slots\" max=\"20\" value=\"1\">\n                            </div>\n                        </div>\n                        <input class=\"btn btn-primary\" type=\"submit\" value=\"Wyświetl\">\n                    </form>\n                </div>\n            </div>\n            <div class=\"card\">\n                <div class=\"card-header\">\n                    Na dłużej (powtarzane do czasu usunięcia z listy)\n                </div>\n                <div class=\"card-body\">\n                    <form onsubmit=\"displayPerm(); return false;\">\n                        <div class=\"mb-1 row\">\n                            <label for=\"permline1\" class=\"col-sm-2 col-form-label\">Linia 1:</label>\n                            <div class=\"col-sm-10\">\n                                <input type=\"text\" class=\"form-control\" id=\"permline1\" name=\"permline1\">\n                            </div>\n                        </div>\n                        <div class=\"mb-3 row\">\n                            <label for=\"permline2\" class=\"col-sm-2 col-form-label\">Linia 2:</label>\n                            <div class=\"col-sm-10\">\n                                <input type=\"text\" class=\"form-control\" id=\"permline2\" name=\"permline2\">\n                            </div>\n                            <div class=\"form-text\" id=\"basic-addon4\">Jeśli chcesz wyświetlić tylko jedną linię, pozostaw\n                                drugie pole puste.</div>\n                        </div>\n\n                        <div class=\"mb-1 row\">\n                            <label for=\"permslots\" class=\"col-sm-2 col-form-label\">Jak długo:</label>\n                            <div class=\"col-sm-10\">\n                                <input type=\"number\" class=\"form-control\" id=\"permslots\" name=\"permslots\" max=\"20\"\n                                    value=\"1\">\n                            </div>\n                        </div>\n                        <input class=\"btn btn-primary\" type=\"submit\" value=\"Wyświetl\">\n                    </form>\n                    <h4 class=\"mt-2\">Lista wpisów: </h4>\n                    <table class=\"table table-striped\">\n                        <thead>\n                            <tr>\n                                <th>Zawartość</th>\n                                <th>Sloty</th>\n                                <th>Akcje</th>\n                            </tr>\n                        </thead>\n                        <tbody id=\"permEntryTableBody\">\n                            <tr>\n                                <td colspan=\"3\">Pusto...</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        </div>\n        <h3 class=\"mt-4\">Ustawienia</h3>\n        <div class=\"card-group\">\n            <div class=\"card\">\n                <div class=\"card-header\">Jak często ma się zmieniać:</div>\n                <div class=\"card-body\">\n                    <button type=\"button\" class=\"btn btn-danger\" onclick=\"stop()\">Wcale</button>\n                    <button type=\"button\" class=\"btn btn-success\" onclick=\"slow()\">Wolno</button>\n                    <button type=\"button\" class=\"btn btn-primary\" onclick=\"normal()\">Normalnie</button>\n                </div>\n            </div>\n        </div>\n        <h3 class=\"mt-4\">Aktualnie wyświetlane</h3>\n        <div class=\"currentDisplay\">\n            <p>Mocno na oko mock wyświetlania (nie sugeruj się szerokością bo font się nie zgadza XD)<br />Nie ma też\n                ikonek\n                XD\n            </p>\n            <div class=\"displayMock\">\n                <div id=\"disp_line1\" class=\"disp_line\">\n                    Czekam na websocket...\n                </div>\n                <div id=\"disp_line2\" class=\"disp_line\">\n                    <!--Linia2-->\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <script>\n        var webSocket = new WebSocket(\"/ws/flipdot\");\n        webSocket.onmessage = (event) => {\n            let data = JSON.parse(event.data);\n            if (data.lines && data.lines.length) {\n                let dl1 = document.getElementById('disp_line1');\n                let dl2 = document.getElementById('disp_line2');\n                dl1.innerText = data.lines[0].text;\n                if (data.lines.length > 1) {\n                    dl2.innerText = data.lines[1].text;\n                    dl1.classList.remove('disp_line__single');\n                    dl2.classList.remove('disp_line__no');\n                }\n                else {\n                    dl1.classList.add('disp_line__single');\n                    //dl2.innerText = '';\n                    dl2.classList.add('disp_line__no');\n                }\n            }\n\n            if (data.permList) {\n                let tbody = document.getElementById(\"permEntryTableBody\");\n                while (tbody.firstChild) {\n                    tbody.removeChild(tbody.lastChild);\n                }\n                if (data.permList.length == 0) {\n                    let row = document.createElement(\"tr\");\n                    let col = document.createElement(\"td\");\n                    col.setAttribute(\"colspan\", \"3\");\n                    col.innerText = \"Pusto...\";\n                    row.appendChild(col);\n                    tbody.appendChild(row);\n                }\n                else {\n                    for (let p of data.permList) {\n                        let row = document.createElement(\"tr\");\n                        let col1 = document.createElement(\"td\");\n                        var l1 = document.createElement(\"div\");\n                        l1.innerText = p.line1;\n                        var l2 = document.createElement(\"div\");\n                        l2.innerText = p.line2;\n                        col1.appendChild(l1);\n                        col1.appendChild(l2);\n                        row.appendChild(col1);\n\n                        let col2 = document.createElement(\"td\");\n                        col2.innerText = p.slots;\n                        row.appendChild(col2);\n\n                        let col3 = document.createElement(\"td\");\n                        let deleteBtn = document.createElement(\"button\");\n                        deleteBtn.innerText = \"Usuń\";\n                        deleteBtn.classList.add(\"btn\", \"btn-danger\");\n                        deleteBtn.onclick = () => deletePerm(p.id);\n                        col3.appendChild(deleteBtn);\n                        row.appendChild(col3);\n                        tbody.appendChild(row);\n                    }\n                }\n            }\n        };\n\n        webSocket.onopen = (event) => {\n            webSocket.send(\"gimmeDisplay\");\n        }\n\n        var display = () => {\n            let l1 = document.getElementById(\"line1\").value;\n            let l2 = document.getElementById(\"line2\").value;\n            let slots = document.getElementById(\"slots\").value;\n            let url = `/flipdot/?line1=${l1}&line2=${l2}&slots=${slots}`;\n            let req = new XMLHttpRequest();\n            req.open('GET', url);\n            req.send();\n        }\n\n        var displayPerm = () => {\n            let l1 = document.getElementById(\"permline1\").value;\n            let l2 = document.getElementById(\"permline2\").value;\n            let slots = document.getElementById(\"permslots\").value;\n            let url = `/flipdot/?line1=${l1}&line2=${l2}&slots=${slots}&perm=true`;\n            let req = new XMLHttpRequest();\n            req.open('GET', url);\n            req.send();\n        }\n\n        var deletePerm = (id) => {\n            let url = `/flipdot/?deleteWebMsg=${id}`;\n            let req = new XMLHttpRequest();\n            req.open('GET', url);\n            req.send();\n        }\n\n        var stop = () => {\n            let url = `/flipdot/?disable=true`;\n            let req = new XMLHttpRequest();\n            req.open('GET', url);\n            req.send();\n        }\n\n        var slow = () => {\n            let url = `/flipdot/?disable=false&slow=true`;\n            let req = new XMLHttpRequest();\n            req.open('GET', url);\n            req.send();\n        }\n\n        var normal = () => {\n            let url = `/flipdot/?disable=false&slow=false`;\n            let req = new XMLHttpRequest();\n            req.open('GET', url);\n            req.send();\n        }\n    </script>\n</body>\n\n</html>",
+        "output": "str",
+        "x": 1040,
+        "y": 580,
+        "wires": [
+            [
+                "3b6856a5a5783c10"
+            ]
+        ]
+    },
+    {
+        "id": "3b6856a5a5783c10",
+        "type": "http response",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1430,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "fbc1608d6c0d75df",
+        "type": "switch",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "",
+        "property": "payload.slots",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1050,
+        "y": 720,
+        "wires": [
+            [
+                "63d0b0c84b8b2d94"
+            ]
+        ]
+    },
+    {
+        "id": "c71095899e4c3041",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "Flipdot_WebText_Check",
+        "links": [],
+        "x": 825,
+        "y": 820,
+        "wires": [
+            [
+                "944ce27f19478a31"
+            ]
+        ]
+    },
+    {
+        "id": "944ce27f19478a31",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "Check Fn",
+        "func": "var payload = (pld) => ({ payload: pld, _linkSource: msg._linkSource });\n\n/**\n * @param {Date} d\n */\nvar fn = (d) => {\n    var store = /** @type {Array} **/(flow.get(\"Flipdot_WebText_Store\"));\n    if (store && store.length) {\n        var display = store.shift();\n        flow.set(\"Flipdot_WebText_Current\", display);\n        flow.set(\"Flipdot_WebText_Slots\", display.slots);\n        return true;\n    }\n\n    return false;\n}\n\nreturn payload({ fn: fn, name: msg.payload });",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 820,
+        "wires": [
+            [
+                "086a21f3dbb9a33f"
+            ]
+        ]
+    },
+    {
+        "id": "086a21f3dbb9a33f",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "Flipdot_WebText_Check_Out",
+        "mode": "return",
+        "links": [],
+        "x": 1465,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "a447a59628ac4760",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "Flipdot_WebText_In",
+        "links": [],
+        "x": 825,
+        "y": 880,
+        "wires": [
+            [
+                "49b883d90623f7a5"
+            ]
+        ]
+    },
+    {
+        "id": "49b883d90623f7a5",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "Const string",
+        "func": "var payload = (pld) => ({payload: pld, _linkSource: msg._linkSource });\n\nvar display = flow.get(\"Flipdot_WebText_Current\");\nvar font_small = \"(9) Cieńkie LITERY\";\nvar font_big = \"(14) LED 120x16 CYR\";\nif (msg.payload.subslot == 0) {\n    let pld = {\n        \"lines\": [\n            {\n                \"text\": display.line1,\n                \"font\": font_big,\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        ]\n    };\n\n    if (display.line2) {\n        pld.lines[0].font = font_small;\n        pld.lines.push(\n            {\n                \"text\": display.line2,\n                \"font\": font_small,\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        );\n    }\n    \n    return payload(pld);\n}\n\nreturn payload(null);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1110,
+        "y": 880,
+        "wires": [
+            [
+                "4555f8de8f4c30fc"
+            ]
+        ]
+    },
+    {
+        "id": "4555f8de8f4c30fc",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "Flipdot_WebText_Out",
+        "mode": "return",
+        "links": [],
+        "x": 1465,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "63d0b0c84b8b2d94",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "Store custom text",
+        "func": "var store = [];\nif (msg.payload.perm) {\n    store = flow.get(\"Flipdot_PermWebText_Store\");\n}\nelse\n{\n    store = flow.get(\"Flipdot_WebText_Store\");\n}\nif (!store) {\n    store = [];\n}\n\nstore.push(msg.payload);\nif (msg.payload.perm) {\n    if (store.length == 0) {\n        msg.payload.id = 1;\n    } else {\n        let maxId = 0;\n        for (let p of store) {\n            if (p.id && p.id > maxId) {\n                maxId = p.id;\n            }\n        }\n        msg.payload.id = maxId + 1;\n    }\n    \n    flow.set(\"Flipdot_PermWebText_Store\", store);\n    if (store.length == 1) {\n        flow.set(\"Flipdot_PermWebText_Slots\", msg.payload.slots);\n    }\n    return { payload: { permList: store } };\n}\nelse {\n    flow.set(\"Flipdot_WebText_Store\", store);\n    return null;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 720,
+        "wires": [
+            [
+                "971bff530638b104"
+            ]
+        ]
+    },
+    {
+        "id": "ad03ae74dc398c52",
+        "type": "websocket out",
+        "z": "010055504f2b95b1",
+        "g": "1f87b7d3aa222e70",
+        "name": "ws out",
+        "server": "ca50346a975bc9e2",
+        "client": "",
+        "x": 350,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "420cf65fea44028f",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "a8bfc79882450461",
+        "name": "Flipdot_NowPrinting_In",
+        "links": [],
+        "x": 445,
+        "y": 1140,
+        "wires": [
+            [
+                "f2e85fed950c98b0"
+            ]
+        ]
+    },
+    {
+        "id": "cd8c7cccc6d8c83f",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "a8bfc79882450461",
+        "name": "Flipdot_NowPrinting_Out",
+        "mode": "return",
+        "links": [],
+        "x": 705,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "ed6a86c16188ef98",
+        "type": "mqtt in",
+        "z": "010055504f2b95b1",
+        "g": "a8bfc79882450461",
+        "name": "bambu",
+        "topic": "bambu/status",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 445,
+        "y": 1080,
+        "wires": [
+            [
+                "f8d6c662cd17f3c0"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "f8d6c662cd17f3c0",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "a8bfc79882450461",
+        "name": "Store Printing info",
+        "func": "if (msg.payload.print.gcode_state && msg.payload.print.subtask_name && msg.payload.print.mc_percent && msg.payload.print.mc_remaining_time) {\n    flow.set(\"bambu_metadata\", {\n        state: msg.payload.print.gcode_state,\n        name: msg.payload.print.subtask_name,\n        percent: msg.payload.print.mc_percent.toString(),\n        remaining: msg.payload.print.mc_remaining_time.toString()\n    });\n    if(msg.payload.print.gcode_state == \"RUNNING\") {\n        flow.set(\"Flipdot_NowPrinting_Slots\", 2);\n    }\n}\nelse {\n    flow.set(\"Flipdot_NowPrinting_Slots\", 0);\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f2e85fed950c98b0",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "a8bfc79882450461",
+        "name": "Display printing",
+        "func": "var payload = (pld) => ({ payload: pld, _linkSource: msg._linkSource });\n\nif (msg.payload.subslot == 0) {\n    let pld = {\n        \"lines\": [\n            {\n                \"text\": \"Now Printing\",\n                \"font\": \"(14) LED 120x16 CHUDE\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        ]\n    };\n\n    return payload(pld);\n}\nelse if (msg.payload.subslot == 1) {\n    var meta = flow.get(\"bambu_metadata\");\n    let pld = {\n        \"lines\": [\n            {\n                \"text\": meta.name,\n                \"font\": \"(9) Cieńkie LITERY\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            },\n            {\n                \"text\": meta.remaining + ' min. / ' + meta.percent + '%',\n                \"font\": \"(9) Cieńkie LITERY\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        ]\n    }\n\n    return payload(pld);\n}\n\nreturn payload(null);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 1140,
+        "wires": [
+            [
+                "cd8c7cccc6d8c83f"
+            ]
+        ]
+    },
+    {
+        "id": "8f472ec4a9d3a504",
+        "type": "http request",
+        "z": "010055504f2b95b1",
+        "g": "a80909e91e345b98",
+        "name": "Ask powermeter",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://powermeter/metrics",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 220,
+        "y": 1300,
+        "wires": [
+            [
+                "d8f83eba5004fb24"
+            ]
+        ]
+    },
+    {
+        "id": "d8f83eba5004fb24",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "a80909e91e345b98",
+        "name": "Get power consumption",
+        "func": "let metrics = msg.payload;\nlet lines = metrics.trim().split('\\n');\nlet powerMeterValue = null;\nlet regex = /esphome_sensor_value\\{id=\"power_meter_house\",name=\"Power Meter House\",unit=\"kW\"\\}\\s+([0-9.]+)/;\n\nlines.forEach(line => {\n    line = line.trim();\n    let match = line.match(regex);\n    if (match) {\n        powerMeterValue = parseFloat(match[1]);\n    }\n});\nmsg.payload = {\n    power: powerMeterValue\n};\n\n//node.warn(\"Final Payload:\");\n//node.warn(msg.payload);\n\nflow.set(\"power_metadata\", msg.payload)\nflow.set(\"Flipdot_PowerConsumption_Slots\", 2);\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 1300,
+        "wires": [
+            [
+                "e2e6b3c9b22ccf28"
+            ]
+        ]
+    },
+    {
+        "id": "e2ea21b0dac0cf96",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "a80909e91e345b98",
+        "name": "Flipdot_PowerConsumption_Out",
+        "mode": "return",
+        "links": [],
+        "x": 705,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "a7aa9d17dd1a5d02",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "a80909e91e345b98",
+        "name": "Display power consumption",
+        "func": "var payload = (pld) => ({ payload: pld, _linkSource: msg._linkSource });\n\nif (msg.payload.subslot == 0 || msg.payload.subslot == 1) {\n    var meta = flow.get(\"power_metadata\");\n    let pld = {\n        \"lines\": [\n            {\n                \"text\": 'Power consumption:',\n                \"font\": \"twin6\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            },\n            {\n                \"text\": meta.power + ' kW.',\n                \"font\": \"twin6\",\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        ]\n    }\n\n    return payload(pld);\n}\n\nreturn payload(null);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1240,
+        "wires": [
+            [
+                "e2ea21b0dac0cf96"
+            ]
+        ]
+    },
+    {
+        "id": "ef02bb2e0de9f179",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "a80909e91e345b98",
+        "name": "Flipdot_PowerConsumption_In",
+        "links": [],
+        "x": 55,
+        "y": 1240,
+        "wires": [
+            [
+                "a7aa9d17dd1a5d02"
+            ]
+        ]
+    },
+    {
+        "id": "a20fea1516b7ed3b",
+        "type": "switch",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "",
+        "property": "payload.disable",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1050,
+        "y": 640,
+        "wires": [
+            [
+                "611852f06e2b0e59"
+            ]
+        ]
+    },
+    {
+        "id": "6bf81d0229ed6d61",
+        "type": "switch",
+        "z": "010055504f2b95b1",
+        "g": "e602ec233cedd70d",
+        "name": "",
+        "property": "SkipDisplay",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 605,
+        "y": 480,
+        "wires": [
+            [],
+            [
+                "d3dbcde272acc74e"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "611852f06e2b0e59",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "Skip display",
+        "func": "if (!msg.payload.disable || msg.payload.disable === \"false\") {\n    flow.set(\"SkipDisplay\", false);\n}\nelse {\n    flow.set(\"SkipDisplay\", true);\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1410,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a484e021a1218cef",
+        "type": "switch",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "",
+        "property": "payload.slow",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1050,
+        "y": 680,
+        "wires": [
+            [
+                "f7e99930a657bd97"
+            ]
+        ]
+    },
+    {
+        "id": "f7e99930a657bd97",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "Slow mode",
+        "func": "if (!msg.payload.slow || msg.payload.slow === \"false\") {\n    flow.set(\"SlowDisplay\", false);\n}\nelse {\n    flow.set(\"SlowDisplay\", true);\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1410,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5b7fafddc87c7c29",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "1f87b7d3aa222e70",
+        "name": "Store last display",
+        "func": "if (!flow.get(\"currentInterruptModule\")) {\n    flow.set(\"LastDisplay\", msg.payload);\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e46d58a13d233c54",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "e602ec233cedd70d",
+        "name": "Restore display",
+        "mode": "link",
+        "links": [
+            "8b4823fcd24f4c5f"
+        ],
+        "x": 520,
+        "y": 560,
+        "wires": [],
+        "l": true
+    },
+    {
+        "id": "6f608b8664047b21",
+        "type": "websocket in",
+        "z": "010055504f2b95b1",
+        "g": "1f87b7d3aa222e70",
+        "name": "",
+        "server": "ca50346a975bc9e2",
+        "client": "",
+        "x": 795,
+        "y": 220,
+        "wires": [
+            [
+                "5d05c243cd2528a8"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "5c234b3e04df313b",
+        "type": "websocket out",
+        "z": "010055504f2b95b1",
+        "g": "1f87b7d3aa222e70",
+        "name": "",
+        "server": "ca50346a975bc9e2",
+        "client": "",
+        "x": 1005,
+        "y": 220,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "5d05c243cd2528a8",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "1f87b7d3aa222e70",
+        "name": "TX last",
+        "func": "var lastDisplay = flow.get(\"LastDisplay\");\nif (!lastDisplay) {\n    lastDisplay = {};\n}\n\nvar permList = flow.get(\"Flipdot_PermWebText_Store\");\nif (!permList) {\n    permList = [];\n}\n\nlastDisplay.permList = permList;\n\nreturn { _session: msg._session, payload: lastDisplay };",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 220,
+        "wires": [
+            [
+                "5c234b3e04df313b"
+            ]
+        ]
+    },
+    {
+        "id": "d6a8f684a4c106a7",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "a80909e91e345b98",
+        "name": "Flipdot_PowerConsumption_Prepare",
+        "links": [],
+        "x": 55,
+        "y": 1300,
+        "wires": [
+            [
+                "8f472ec4a9d3a504"
+            ]
+        ]
+    },
+    {
+        "id": "e2e6b3c9b22ccf28",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "a80909e91e345b98",
+        "name": "Flipdot_PowerConsumption_Prep_Out",
+        "mode": "return",
+        "links": [],
+        "x": 705,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "20496c63e08a3118",
+        "type": "inject",
+        "z": "010055504f2b95b1",
+        "g": "4aa742838338beb0",
+        "name": "Inject True now and each midnight",
+        "props": [
+            {
+                "p": "tdma_status",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "01 00 * * *",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 960,
+        "y": 320,
+        "wires": [
+            [
+                "cbec3a5f161f7863"
+            ]
+        ]
+    },
+    {
+        "id": "cbec3a5f161f7863",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "4aa742838338beb0",
+        "name": "Set flow.tdma_status",
+        "func": "node.warn('TDMA set to ' + (msg.tdma_status).toString())\nflow.set('tdma_status_notified', false)\nflow.set('tdma_status', msg.tdma_status)\nreturn { \n    method: 'POST',\n    url: 'http://10.12.10.105/actions/clear_pages',\n    payload: {}\n    };",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 480,
+        "wires": [
+            [
+                "d098b11588956ae7",
+                "d4f254fce9e5e9fd"
+            ]
+        ]
+    },
+    {
+        "id": "ba889b8eb28c9a42",
+        "type": "inject",
+        "z": "010055504f2b95b1",
+        "g": "4aa742838338beb0",
+        "name": "Inject False",
+        "props": [
+            {
+                "p": "tdma_status",
+                "v": "false",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 890,
+        "y": 380,
+        "wires": [
+            [
+                "cbec3a5f161f7863"
+            ]
+        ]
+    },
+    {
+        "id": "d098b11588956ae7",
+        "type": "debug",
+        "z": "010055504f2b95b1",
+        "g": "4aa742838338beb0",
+        "name": "Debug_tdma_status",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "d4f254fce9e5e9fd",
+        "type": "http request",
+        "z": "010055504f2b95b1",
+        "g": "4aa742838338beb0",
+        "name": "",
+        "method": "use",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": true,
+        "headers": [],
+        "x": 1190,
+        "y": 480,
+        "wires": [
+            [
+                "d098b11588956ae7"
+            ]
+        ]
+    },
+    {
+        "id": "7cc5d3e81a6fac98",
+        "type": "switch",
+        "z": "010055504f2b95b1",
+        "g": "1f87b7d3aa222e70",
+        "name": "",
+        "property": "tdma_status",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "ad03ae74dc398c52",
+                "d3ccbda8db8ccef6",
+                "5b7fafddc87c7c29"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "971bff530638b104",
+        "type": "websocket out",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "ws out",
+        "server": "ca50346a975bc9e2",
+        "client": "",
+        "x": 1430,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "dc2efe8529deceb4",
+        "type": "switch",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "",
+        "property": "payload.deleteWebMsg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1050,
+        "y": 760,
+        "wires": [
+            [
+                "a8a1980fe9b3c58b"
+            ]
+        ]
+    },
+    {
+        "id": "a8a1980fe9b3c58b",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "Delete perm msg",
+        "func": "let id = msg.payload.deleteWebMsg;\nlet store = flow.get(\"Flipdot_PermWebText_Store\");\nlet ix = store.findIndex((p) => p.id == id);\nif (ix == -1) {\n    return null;\n}\nstore.splice(ix, 1);\nflow.set(\"Flipdot_PermWebText_Store\", store);\nif (store.length == 0) {\n    flow.set(\"Flipdot_PermWebText_Slots\", 0);\n}\nreturn { payload: { permList: store } };",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 760,
+        "wires": [
+            [
+                "971bff530638b104"
+            ]
+        ]
+    },
+    {
+        "id": "b042fce4803d1a4d",
+        "type": "link in",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "Flipdot_PermWebText_In",
+        "links": [],
+        "x": 825,
+        "y": 940,
+        "wires": [
+            [
+                "fcccbd9d3126b67b"
+            ]
+        ]
+    },
+    {
+        "id": "fcccbd9d3126b67b",
+        "type": "function",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "Process permanent web text",
+        "func": "var payload = (pld) => ({ payload: pld, _linkSource: msg._linkSource });\n\nvar font_small = \"(9) Cieńkie LITERY\";\nvar font_big = \"(14) LED 120x16 CYR\";\n\nvar permTextIx = flow.get(\"Flipdot_PermWebText_Index\");\nif (!permTextIx) {\n    permTextIx = 0;\n}\n\nlet store = flow.get(\"Flipdot_PermWebText_Store\");\nvar remainingSlots = flow.get(\"remainingSubSlots\");\n\nif (!store || store.length == 0) {\n    flow.set(\"remainingSubSlots\", 0);\n    return payload(null);\n}\n\nif (permTextIx >= store.length) {\n    flow.set(\"Flipdot_PermWebText_Index\", 0);\n    flow.set(\"remainingSubSlots\", 0);\n    return payload(null);\n}\n\nlet display = store[permTextIx];\nvar pld = null;\nif (remainingSlots >= display.slots - 1) {\n    pld = {\n        \"lines\": [\n            {\n                \"text\": display.line1,\n                \"font\": font_big,\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        ]\n    };\n\n    if (display.line2) {\n        pld.lines[0].font = font_small;\n        pld.lines.push(\n            {\n                \"text\": display.line2,\n                \"font\": font_small,\n                \"invert\": false,\n                \"auto_break\": false,\n                \"align\": \"center\"\n            }\n        );\n    }\n}\n\nif (remainingSlots == 0) {\n    permTextIx += 1;\n    if (permTextIx < store.length) {\n        remainingSlots = store[permTextIx].slots;\n        flow.set(\"remainingSubSlots\", remainingSlots);\n        flow.set(\"Flipdot_PermWebText_Index\", permTextIx);\n    }\n    else {\n        flow.set(\"Flipdot_PermWebText_Index\", 0);\n    }\n}\n\nreturn payload(pld);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1160,
+        "y": 940,
+        "wires": [
+            [
+                "059f9ec2b6d12c1e"
+            ]
+        ]
+    },
+    {
+        "id": "059f9ec2b6d12c1e",
+        "type": "link out",
+        "z": "010055504f2b95b1",
+        "g": "88d9f3e322b40176",
+        "name": "link out 1",
+        "mode": "return",
+        "links": [],
+        "x": 1465,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "ca50346a975bc9e2",
+        "type": "websocket-listener",
+        "path": "/ws/flipdot",
+        "wholemsg": "false"
+    }
+]

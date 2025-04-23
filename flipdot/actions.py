@@ -1,5 +1,5 @@
 from flask import Blueprint, request, Response
-from flipdot.connector import pixel
+from flipdot.connector import default_id, pixel, validate_id
 
 bp = Blueprint('actions', __name__, url_prefix='/actions')
 
@@ -11,12 +11,14 @@ def validators_block():
 
 @bp.route('/clear_pages', methods=['POST'])
 def clear_pages():
-    pixel.delete_all_pages(0)
+    id = validate_id(request.args.get("id", default=default_id, type=int))
+    pixel.delete_all_pages(id)
     return Response(status=200)
 
 @bp.route('/raw/ddb', methods=['POST'])
 def display_raw_ddb():
+    id = validate_id(request.args.get("id", default=default_id, type=int))
     value = request.args.get('value')
-    pixel.display_data_block(0, value)
+    pixel.display_data_block(id, value)
     return Response(status=200)
     

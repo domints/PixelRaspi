@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  pixel-raspi:
+    image: domints/pixel-raspi:0.0.2
+    environment:
+      - FLASK_PIXEL_PORT=/dev/ttyXRUSB0
+      - FLASK_PIXEL_PIN=null
+    devices:
+      - /dev/ttyXRUSB0:/dev/ttyXRUSB0
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    networks:
+      - node-red-net
+    privileged: true
+  node-red:
+    image: nodered/node-red:latest
+    environment:
+      - TZ=Europe/Amsterdam
+    ports:
+      - "1880:1880"
+    networks:
+      - node-red-net
+    volumes:
+      - node-red-data:/data
+
+volumes:
+  node-red-data:
+
+networks:
+  node-red-net:

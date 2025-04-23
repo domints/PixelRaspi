@@ -23,6 +23,8 @@ def create_app(test_config=None):
     else:
         # load the test config if passed in
         app.config.from_mapping(test_config)
+    
+    app.config.from_prefixed_env()
 
     # ensure the instance folder exists
     try:
@@ -31,7 +33,7 @@ def create_app(test_config=None):
         pass
 
     fonts.initialize()
-    connector.start_pixel(app.config.get('PIXEL_PORT', '/dev/serial0'), app.config.get('PIXEL_PIN', 18), app.config.get('PIXEL_USE_MOCK', False))
+    connector.start_pixel(app.config.get('PIXEL_PORT', '/dev/serial0'), app.config.get('PIXEL_PIN', 18), app.config.get('PIXEL_USE_MOCK', False), app.config.get('DISPLAY_IDS', [ 0 ]))
     
     def tick():
         clock.tick()
