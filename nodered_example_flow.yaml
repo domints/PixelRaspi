@@ -2036,7 +2036,7 @@
         "z": "010055504f2b95b1",
         "g": "4aa742838338beb0",
         "name": "Set flow.tdma_status",
-        "func": "node.warn('TDMA set to ' + (msg.tdma_status).toString())\nflow.set('tdma_status_notified', false)\nflow.set('tdma_status', msg.tdma_status)\nreturn { \n    method: 'POST',\n    url: 'http://10.12.10.105/actions/clear_pages',\n    payload: {}\n    };",
+        "func": "node.warn('TDMA set to ' + (msg.tdma_status).toString())\nflow.set('tdma_status_notified', false)\nflow.set('tdma_status', msg.tdma_status)\nreturn { \n    method: 'POST',\n    url: 'http://pixel-raspi:5000/actions/clear_pages',\n    payload: {}\n    };",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
