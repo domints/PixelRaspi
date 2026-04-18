@@ -1,8 +1,16 @@
 from collections import namedtuple
-from pixel import Pixel
+from enum import Enum
+from pixel.pixel import Pixel
+from pixel.serialbase import SerialConnector
+from pixel.hwserial import HwSerial
+from pixel.waveshareeth import WaveshareEthernet
 
 from flipdot.pixelmock import PixelMock
 Dimensions: type[tuple[int, int]] = namedtuple('Dimensions', ['width', 'height'])
+
+class ConnectorType(Enum):
+    HwSerial = 0,
+    WaveshareEthernet = 1
 
 pixel: Pixel = None
 
@@ -12,7 +20,7 @@ requested_ids: list[int] = []
 displays: dict[int, Dimensions] = {}
 default_id: int = -1
 
-def start_pixel(port: str, pin: int | None = None, useMock: bool = False, display_ids: list[int] = [ 0 ]):
+def start_pixel(port: str, connectorType: ConnectorType = ConnectorType.HwSerial, pin: int | None = None, useMock: bool = False, display_ids: list[int] = [ 0 ]):
     global pixel
     global default_id
     global requested_ids
@@ -22,7 +30,15 @@ def start_pixel(port: str, pin: int | None = None, useMock: bool = False, displa
     if useMock:
         pixel = PixelMock("G112x16x14/SOS1P02")
     else:
-        pixel = Pixel(port, pin)
+        serial: SerialConnector | None = None
+        if connectorType == ConnectorType.HwSerial:
+            serial = HwSerial(port, pin)
+        elif connectorType == ConnectorType.WaveshareEthernet:
+            ip, _, tcpport = port.partition(':')
+            serial = WaveshareEthernet((ip, int(tcpport)))
+        else:
+            raise ValueError("Umm, you can't.")
+        pixel = Pixel(serial)
         pixel.open()
     reload_displays()
 

@@ -72,6 +72,15 @@
     "/actions/clear_pages": {
       "post": {
         "description": "",
+        "parameters": [
+          {
+            "description": "ID of display to call to",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Pages cleared"
@@ -87,6 +96,13 @@
       "post": {
         "description": "",
         "parameters": [
+          {
+            "description": "ID of display to call to",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          },
           {
             "description": "Datablock value to send",
             "in": "query",
@@ -134,6 +150,13 @@
         "description": "",
         "parameters": [
           {
+            "description": "ID of display to call to",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          },
+          {
             "type": "integer",
             "description": "Page number, from 0 to probably 255",
             "in": "query",
@@ -162,6 +185,13 @@
       "post": {
         "description": "",
         "parameters": [
+          {
+            "description": "ID of display to call to",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          },
           {
             "description": "Text to be displayed",
             "in": "query",
@@ -201,6 +231,13 @@
         "description": "",
         "parameters": [
           {
+            "description": "ID of display to call to",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          },
+          {
             "description": "Description of data to display",
             "in": "body",
             "name": "display_data",
@@ -234,6 +271,15 @@
     "/info/available_commands": {
       "get": {
         "description": "",
+        "parameters": [
+          {
+            "description": "ID of display to call to",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
         "responses": {
           "200": {
             "description": "available commands."
@@ -248,6 +294,15 @@
     "/info/did": {
       "get": {
         "description": "",
+        "parameters": [
+          {
+            "description": "ID of display to call to",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
         "responses": {
           "200": {
             "description": "DID."
@@ -262,6 +317,15 @@
     "/info/factory_dentification": {
       "get": {
         "description": "",
+        "parameters": [
+          {
+            "description": "ID of display to call to",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Factory info."
@@ -276,6 +340,15 @@
     "/info/gid": {
       "get": {
         "description": "",
+        "parameters": [
+          {
+            "description": "ID of display to call to",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
         "responses": {
           "200": {
             "description": "GID."

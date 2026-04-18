@@ -33,7 +33,11 @@ def create_app(test_config=None):
         pass
 
     fonts.initialize()
-    connector.start_pixel(app.config.get('PIXEL_PORT', '/dev/serial0'), app.config.get('PIXEL_PIN', 18), app.config.get('PIXEL_USE_MOCK', False), app.config.get('DISPLAY_IDS', [ 0 ]))
+    connType = connector.ConnectorType.HwSerial
+    connTypeString = app.config.get("PIXEL_CONNECTOR", "HW_SERIAL")
+    if (connTypeString == "WAVESHARE"):
+        connType = connector.ConnectorType.WaveshareEthernet
+    connector.start_pixel(app.config.get('PIXEL_PORT', '/dev/serial0'), connType, app.config.get('PIXEL_PIN', 18), app.config.get('PIXEL_USE_MOCK', False), app.config.get('DISPLAY_IDS', [ 0 ]))
     
     def tick():
         clock.tick()
