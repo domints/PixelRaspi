@@ -72,7 +72,6 @@ This compose exposes port `/dev/ttyXRUSB0` which is marked as IOIO2 on the devic
 You need to reconfigure port to use RS485 (`dcc.cctk --serial1=rs485` and `dcc.cctk --serial2=rs485`). Then you need to reboot. Make sure your CMOS battery is fine, otherwise it'll forget serial settings on power disconnect.
 
 Provided compose runs this repo, as a translator of HTTP to pixel's proto, and Node-Red as coordinator. Example flow is provided in this repo, with "TDMA" kind of governor which dynamically changes displayed data.
-
 ## Additional resources
 
 If you'd like to look for extra icons for your project, here are bunch of links. For licensing reasons I can't include them here, although I think they are fitting brilliantly onto flipdot display - just plop PNGs into the icons folder:
