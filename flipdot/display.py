@@ -1,15 +1,20 @@
-from flask import Blueprint, request, Response
+from flask import Response
+from flask_openapi3 import APIBlueprint, FileStorage, Tag
 from flipdot import connector
-from flipdot.connector import UnknownDisplayError, validate_id
-from flipdot.models import Result
-from flipdot.text_helpers import available_fonts, get_display_data, render_display_data, get_dimensions
+from flipdot.connector import UnknownDisplayError, resolve_id
+from flipdot.models import DisplayData, PageQuery, Result, TextQuery
+from flipdot.text_helpers import available_fonts, render_display_data, get_dimensions
 from PIL import Image
 from pixel.renderer.errors import PixelRenderError
+from pydantic import BaseModel, Field
 import threading
 
 DDB_LOCK = threading.Lock()
 
-bp = Blueprint('display', __name__, url_prefix='/display')
+bp = APIBlueprint('display', __name__, url_prefix='/display', abp_tags=[Tag(name='display')])
+
+class ImageForm(BaseModel):
+    file: FileStorage = Field(description="The file to upload.")
 
 def display_data_block_with_retry(displayNo: int, data) -> Result:
     acquired = DDB_LOCK.acquire(timeout=3)
@@ -51,40 +56,36 @@ def show_image(display_no: int, image: Image.Image, page: int) -> Result:
         return res
     return display_data_block_with_retry(display_no, block)
 
-@bp.route('/image', methods = ['POST'])
-def upload_file():
-    id = validate_id(request.args.get("id", default=connector.default_id, type=int))
-    imageFile = request.files['file']
-    page = int(request.args.get('page'))
-    img = Image.open(imageFile.stream)
-    resp = show_image(id, img, page)
+@bp.post('/image', summary="Display image file", responses={200: {"description": "Image should be displayed."}})
+def upload_file(query: PageQuery, form: ImageForm):
+    img = Image.open(form.file.stream)
+    resp = show_image(resolve_id(query.id), img, query.page)
     return resp.toResponse()
 
-@bp.route('/text', methods=["POST"])
-def text():
-    id = validate_id(request.args.get("id", default=connector.default_id, type=int))
-    value = request.args.get('value')
-    page = int(request.args.get('page'))
-    font = request.args.get('font')
-    if font is None:
-        font = 'superstar'
+@bp.post('/text', summary="Display single line of text", responses={
+    200: {"description": "Text should be displayed."},
+    404: {"description": "Font not found, or no such display id."},
+})
+def text(query: TextQuery):
+    font = query.font or 'superstar'
     fontDef = available_fonts.get(font)
     if fontDef is None:
         return Response("Font not found", status=404)
-    img = Image.new("1", get_dimensions(id), (0))
-    fontDef.drawText(img, 0, 0 + fontDef.topOffset, value, (255))
-    resp = show_image(id, img, page)
+    display_id = resolve_id(query.id)
+    img = Image.new("1", get_dimensions(display_id), (0))
+    fontDef.drawText(img, 0, 0 + fontDef.topOffset, query.value, (255))
+    resp = show_image(display_id, img, query.page)
     return resp.toResponse()
 
-@bp.route("/complex", methods=["POST"])
-def complex():
-    id = validate_id(request.args.get("id", default=connector.default_id, type=int))
-    page = int(request.args.get('page'))
-    json_data = request.get_data()
-    data = get_display_data(json_data)
+@bp.post("/complex", summary="Display complex text combination", responses={
+    200: {"description": "Text should be displayed."},
+    400: {"description": "Invalid request. Observe response message."},
+})
+def complex(query: PageQuery, body: DisplayData):
+    display_id = resolve_id(query.id)
     try:
-        img = render_display_data(id, data)
+        img = render_display_data(display_id, body)
     except ValueError as e:
         return Response(str(e.args), status=400)
-    resp = show_image(id, img, page)
+    resp = show_image(display_id, img, query.page)
     return resp.toResponse()

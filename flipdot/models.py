@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Dict, Optional
 from flask import Response
-from pydantic import BaseModel, ConfigDict, TypeAdapter
+from pydantic import BaseModel, ConfigDict, Field, RootModel, TypeAdapter
 
 class AdditionType(Enum):
     Icon = 'icon'
@@ -55,7 +55,7 @@ class DisplayData(BaseModel):
     model_config = ConfigDict()
 
     addition: Optional[Addition] = None
-    lines: Optional[list[TextLine]] = None
+    lines: Optional[list[TextLine]] = Field(None, max_length=2)
 
 class CharD(BaseModel):
     model_config = ConfigDict()
@@ -101,3 +101,37 @@ def get_blocks(json_data: str) -> list[Block]:
 def get_fonts(json_data: bytes) -> list[PxFont]:
     ta = TypeAdapter(list[PxFont])
     return ta.validate_json(json_data)
+
+class DisplayIdQuery(BaseModel):
+    id: Optional[int] = Field(
+        None,
+        description="Decimal display address. Requests without id go to the first panel that answered.",
+    )
+
+class PageQuery(DisplayIdQuery):
+    page: int = Field(description="Page number, from 0 to probably 255")
+
+class TextQuery(PageQuery):
+    value: str = Field(description="Text to be displayed")
+    font: Optional[str] = Field(None, description="Font to render with. If not set, superstar is used.")
+
+class ValidatorsBlockQuery(BaseModel):
+    blocked: bool = Field(False, description="Indicates whether validators should be blocked or not")
+
+class RawDdbQuery(DisplayIdQuery):
+    value: str = Field(description="Datablock value to send")
+
+class BlockList(RootModel[list[Block]]):
+    pass
+
+class FontInfo(BaseModel):
+    name: str
+    halfHeight: bool
+    hasDiacritics: bool
+    isBinary: bool
+
+class FontList(RootModel[list[FontInfo]]):
+    pass
+
+class IconList(RootModel[list[str]]):
+    pass

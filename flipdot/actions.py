@@ -1,26 +1,29 @@
-from flask import Blueprint, request, Response
+from flask import Response
+from flask_openapi3 import APIBlueprint, Tag
 from flipdot import connector
-from flipdot.connector import validate_id
+from flipdot.connector import resolve_id
+from flipdot.models import DisplayIdQuery, RawDdbQuery, ValidatorsBlockQuery
 
-bp = Blueprint('actions', __name__, url_prefix='/actions')
+bp = APIBlueprint('actions', __name__, url_prefix='/actions', abp_tags=[Tag(name='actions')])
 
-def _display_id() -> int:
-    return validate_id(request.args.get("id", default=connector.default_id, type=int))
-
-@bp.route("/validators_block", methods = ['POST'])
-def validators_block():
-    value = request.args.get("blocked", default=False, type=bool)
-    connector.pixel.set_validators_block(value)
+@bp.post("/validators_block", summary="Sets validators block, either block or unblock. Might display information on internal display.", responses={
+    200: {"description": "Validators set correctly."},
+})
+def validators_block(query: ValidatorsBlockQuery):
+    connector.pixel.set_validators_block(query.blocked)
     return Response(status=200)
 
-@bp.route('/clear_pages', methods=['POST'])
-def clear_pages():
-    connector.pixel.delete_all_pages(_display_id())
+@bp.post('/clear_pages', summary="Clear all pages (make display blank)", responses={
+    200: {"description": "Pages cleared"},
+})
+def clear_pages(query: DisplayIdQuery):
+    connector.pixel.delete_all_pages(resolve_id(query.id))
     return Response(status=200)
 
-@bp.route('/raw/ddb', methods=['POST'])
-def display_raw_ddb():
-    value = request.args.get('value')
-    connector.pixel.display_data_block(_display_id(), value)
+@bp.post('/raw/ddb', summary="Sends datablock to display. Should show it.", responses={
+    200: {"description": "Datablock sent."},
+})
+def display_raw_ddb(query: RawDdbQuery):
+    connector.pixel.display_data_block(resolve_id(query.id), query.value)
     return Response(status=200)
     

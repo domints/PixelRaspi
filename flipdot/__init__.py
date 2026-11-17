@@ -1,18 +1,26 @@
 import os
 import json
 
-from flask_swagger import swagger
+from flask_openapi3 import Info, OpenAPI
 from flask_swagger_ui import get_swaggerui_blueprint
-from flask import Flask, jsonify, send_file, Response
+from flask import send_file, Response
 from flipdot import connector, fonts, clock
 from apscheduler.schedulers.background import BackgroundScheduler
 
 SWAGGER_URL = '/swagger'  # URL for exposing Swagger UI (without trailing '/')
-API_URL = '/swagger.json'  # Our API url (can of course be a local resource)
+API_URL = '/openapi.json'
 
 def create_app(test_config=None):
     # create and configure the app
-    app = Flask(__name__, instance_relative_config=True, static_url_path='/static')
+    app = OpenAPI(
+        __name__,
+        info=Info(title="Pixel Flipdot API", version="1.0"),
+        doc_ui=False,
+        instance_relative_config=True,
+        static_url_path='/static',
+    )
+    # flask-swagger-ui 4 only renders documents whose version is openapi 3.0.n.
+    app.openapi_version = "3.0.3"
     app.config.from_mapping(
         SECRET_KEY='dev'
     )
@@ -61,9 +69,10 @@ def create_app(test_config=None):
         scheduler.add_job(id='clock-job', func=tick, trigger='interval', seconds=15)
     scheduler.start()
     
+    @app.route("/openapi.json")
     @app.route("/swagger.json")
-    def spec():
-        return send_file("swagger.json")
+    def openapi_json():
+        return app.api_doc
     
     @app.route("/")
     def index():
@@ -83,9 +92,9 @@ def create_app(test_config=None):
     app.register_blueprint(swaggerui_blueprint)
 
     from . import actions, info, display, text_helpers # needs to stay here (after connector.startpixel) because of python modules
-    app.register_blueprint(info.bp)
-    app.register_blueprint(display.bp)
-    app.register_blueprint(actions.bp)
-    app.register_blueprint(text_helpers.bp)
+    app.register_api(info.bp)
+    app.register_api(display.bp)
+    app.register_api(actions.bp)
+    app.register_api(text_helpers.bp)
 
     return app

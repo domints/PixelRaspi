@@ -1,11 +1,14 @@
 import abc
 import codecs
 from typing import Any, Dict, Optional
-from flask import Blueprint, request, Response
+from flask import Response
+from flask_openapi3 import APIBlueprint, Tag
 from flipdot.block_helpers import render_blocks_data
-from flipdot import connector
-from flipdot.connector import get_dimensions, validate_id
-from flipdot.models import CharD, DisplayData, AdditionType, PxFont, TextAlign, get_blocks, get_display_data
+from flipdot.connector import get_dimensions, resolve_id
+from flipdot.models import (
+    CharD, DisplayData, AdditionType, PxFont, TextAlign,
+    BlockList, DisplayIdQuery, FontList, IconList,
+)
 import io
 import json
 import math
@@ -240,9 +243,14 @@ def render_display_data(displayId: int, data: DisplayData) -> Image.Image:
 
     return img
 
-bp = Blueprint('text', __name__, url_prefix='/text')
+bp = APIBlueprint('text', __name__, url_prefix='/text', abp_tags=[Tag(name='text')])
 
-@bp.route("/fonts")
+_PNG = {
+    "description": "Rendered image",
+    "content": {"image/png": {"schema": {"type": "string", "format": "binary"}}},
+}
+
+@bp.get("/fonts", summary="Gets available fonts", responses={200: FontList})
 def get_fonts():
     result = []
     for f in available_fonts:
@@ -252,22 +260,22 @@ def get_fonts():
 
     return Response(json.dumps(result), status=200, content_type="text/json")
 
-@bp.route("/icons")
+@bp.get("/icons", summary="Gets available icons", responses={200: IconList})
 def get_icons():
     iconFiles = os.listdir("./icons")
     result = []
     for icon in iconFiles:
         result.append(icon.split('.')[0])
     return Response(json.dumps(result), status=200, content_type="text/json")
-    
 
-@bp.route("/render_text", methods=["POST"])
-def get_rendered_text():
-    id = validate_id(request.args.get("id", default=connector.default_id, type=int))
-    json_data = request.get_data()
-    data = get_display_data(json_data)
+
+@bp.post("/render_text", summary="Render display data object to image", responses={
+    200: _PNG,
+    400: {"description": "Invalid request. Observe response message."},
+})
+def get_rendered_text(query: DisplayIdQuery, body: DisplayData):
     try:
-        img = render_display_data(id, data)
+        img = render_display_data(resolve_id(query.id), body)
     except ValueError as e:
         return Response(str(e.args), status=400)
     imgByteArr = io.BytesIO()
@@ -275,12 +283,13 @@ def get_rendered_text():
     img_resized.save(imgByteArr, format='PNG')
     return Response(imgByteArr.getvalue(), status=200, mimetype="image/png")
 
-@bp.route("/render_blocks", methods=["POST"])
-def get_rendered_blocks():
-    json_data = request.get_data()
-    data = get_blocks(json_data)
+@bp.post("/render_blocks", summary="Render blocks to image", responses={
+    200: _PNG,
+    400: {"description": "Invalid request. Observe response message."},
+})
+def get_rendered_blocks(body: BlockList):
     try:
-        img = render_blocks_data(data)
+        img = render_blocks_data(body.root)
     except ValueError as e:
         return Response(str(e.args), status=400)
     imgByteArr = io.BytesIO()

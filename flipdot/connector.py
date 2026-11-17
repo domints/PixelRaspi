@@ -209,6 +209,12 @@ def validate_id(id: int) -> int:
     raise UnknownDisplayError("No such display id")
 
 
+def resolve_id(display_id: int | None) -> int:
+    if display_id is None:
+        display_id = default_id
+    return validate_id(display_id)
+
+
 def get_dimensions(id: int) -> Dimensions:
     return displays[id]
 

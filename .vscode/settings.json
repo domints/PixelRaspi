@@ -1,10 +1,1 @@
-{
-    "json.schemas": [
-        {
-            "fileMatch": [
-                "/flipdot/swagger.json"
-            ],
-            "url": "https://json.schemastore.org/swagger-2.0.json"
-        }
-    ]
-}
+{}
