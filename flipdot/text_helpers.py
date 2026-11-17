@@ -3,7 +3,8 @@ import codecs
 from typing import Any, Dict, Optional
 from flask import Blueprint, request, Response
 from flipdot.block_helpers import render_blocks_data
-from flipdot.connector import get_dimensions, validate_id, default_id
+from flipdot import connector
+from flipdot.connector import get_dimensions, validate_id
 from flipdot.models import CharD, DisplayData, AdditionType, PxFont, TextAlign, get_blocks, get_display_data
 import io
 import json
@@ -262,7 +263,7 @@ def get_icons():
 
 @bp.route("/render_text", methods=["POST"])
 def get_rendered_text():
-    id = validate_id(request.args.get("id", default=default_id, type=int))
+    id = validate_id(request.args.get("id", default=connector.default_id, type=int))
     json_data = request.get_data()
     data = get_display_data(json_data)
     try:

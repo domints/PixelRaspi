@@ -3,7 +3,7 @@ import json
 
 from flask_swagger import swagger
 from flask_swagger_ui import get_swaggerui_blueprint
-from flask import Flask, jsonify, send_file
+from flask import Flask, jsonify, send_file, Response
 from flipdot import connector, fonts, clock
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -32,8 +32,26 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    @app.errorhandler(connector.UnknownDisplayError)
+    def unknown_display(_error):
+        return Response("No such display id", status=404)
+
     fonts.initialize()
-    connector.start_pixel(app.config.get('PIXEL_PORT', '/dev/serial0'), app.config.get('PIXEL_PIN', 18), app.config.get('PIXEL_USE_MOCK', False), app.config.get('DISPLAY_IDS', [ 0 ]))
+    connector.start_pixel(
+        app.config.get('PIXEL_PORT', '/dev/serial0'),
+        app.config.get('PIXEL_PIN', 18),
+        app.config.get('PIXEL_USE_MOCK', False),
+        app.config.get('DISPLAY_IDS', [0]),
+        eth_host=app.config.get('PIXEL_ETH_HOST'),
+        eth_port=app.config.get('PIXEL_ETH_PORT'),
+        baud=app.config.get('PIXEL_BAUD', 4800),
+        controller_name=app.config.get('PIXEL_CONTROLLER', '8051'),
+        controller_overrides_value=app.config.get('PIXEL_CONTROLLERS'),
+        encoding_name=app.config.get('PIXEL_ENCODING'),
+        color_mode_name=app.config.get('PIXEL_COLOR_MODE', 'mono'),
+        rts_toggle=app.config.get('PIXEL_RTS_TOGGLE', False),
+        rs485=app.config.get('PIXEL_RS485', False),
+    )
     
     def tick():
         clock.tick()

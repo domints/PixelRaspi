@@ -1,6 +1,5 @@
 from datetime import datetime
 import time
-import numpy as np
 from flipdot.models import DisplayData, TextLine
 from flipdot.text_helpers import render_display_data
 
@@ -12,23 +11,22 @@ def tick():
     Run from scheduler at maybe 15 sec intervals, I don't think it needs to be precise now.
     '''
     global last_time
-    from flipdot.connector import pixel
-    from flipdot.display import display_data_block_with_retry
+    from flipdot.connector import default_id
+    from flipdot.display import show_image
     current = datetime.now()
     if (current.minute != last_time.minute or current.hour != last_time.hour):
         last_time = current
+        if default_id < 0:
+            return
         try:
             text = f'{current.hour:02d}:{current.minute:02d}    {current.day:02d}.{current.month:02d}.{current.year:02d}'
             lines = [
                 TextLine(text=text, font='(14) LED 120x16 CHUDE - LT', align='center')
             ]
             data: DisplayData = DisplayData(lines=lines)
-            img = render_display_data(data)
-            imgArr = np.asarray(img)
+            img = render_display_data(default_id, data)
             for i in range(1, 10):
-                data = pixel.create_data_block(pixel.get_image_data(imgArr, page=i))
-                display_data_block_with_retry(0, data)
+                show_image(default_id, img, page=i)
                 time.sleep(1)
-        except:
+        except Exception:
             pass
-    pass

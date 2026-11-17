@@ -1,24 +1,26 @@
 from flask import Blueprint, request, Response
-from flipdot.connector import default_id, pixel, validate_id
+from flipdot import connector
+from flipdot.connector import validate_id
 
 bp = Blueprint('actions', __name__, url_prefix='/actions')
+
+def _display_id() -> int:
+    return validate_id(request.args.get("id", default=connector.default_id, type=int))
 
 @bp.route("/validators_block", methods = ['POST'])
 def validators_block():
     value = request.args.get("blocked", default=False, type=bool)
-    pixel.set_validators_block(value)
+    connector.pixel.set_validators_block(value)
     return Response(status=200)
 
 @bp.route('/clear_pages', methods=['POST'])
 def clear_pages():
-    id = validate_id(request.args.get("id", default=default_id, type=int))
-    pixel.delete_all_pages(id)
+    connector.pixel.delete_all_pages(_display_id())
     return Response(status=200)
 
 @bp.route('/raw/ddb', methods=['POST'])
 def display_raw_ddb():
-    id = validate_id(request.args.get("id", default=default_id, type=int))
     value = request.args.get('value')
-    pixel.display_data_block(id, value)
+    connector.pixel.display_data_block(_display_id(), value)
     return Response(status=200)
     

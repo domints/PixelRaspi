@@ -1,21 +1,20 @@
-from pixel import Pixel
 from flask import Blueprint, request, Response
-from flipdot.connector import pixel, default_id, validate_id
+from flipdot import connector
+from flipdot.connector import UnknownDisplayError, validate_id
 from flipdot.models import Result
 from flipdot.text_helpers import available_fonts, get_display_data, render_display_data, get_dimensions
-from PIL import Image, ImageDraw, ImageFont
-import numpy as np
+from PIL import Image
+from pixel.renderer.errors import PixelRenderError
 import threading
-import time
 
 DDB_LOCK = threading.Lock()
 
 bp = Blueprint('display', __name__, url_prefix='/display')
 
-def display_data_block_with_retry(displayNo: int, data: str) -> Result:
+def display_data_block_with_retry(displayNo: int, data) -> Result:
     acquired = DDB_LOCK.acquire(timeout=3)
     if not acquired:
-        r  = Result()
+        r = Result()
         r.isOk = False
         r.isTimeout = True
         return r
@@ -24,33 +23,46 @@ def display_data_block_with_retry(displayNo: int, data: str) -> Result:
         err: str | None = None
         while retryCount > 0:
             try:
-                pixel.display_data_block(displayNo, data)
+                connector.pixel.display_data_block(displayNo, data)
                 return Result()
             except ValueError as e:
-                err = e.args
+                err = str(e)
                 retryCount -= 1
         res = Result()
-        if err is not None:
-            res.isOk = False
-            res.msg = err
-        return Result()
+        res.isOk = False
+        res.msg = err or "Display rejected the data block"
+        return res
     finally:
         DDB_LOCK.release()
 
+def show_image(display_no: int, image: Image.Image, page: int) -> Result:
+    try:
+        renderer = connector.get_renderer(display_no)
+        kwargs = {"page": page, "threshold": 1}
+        if connector.encoding:
+            kwargs["encoding"] = connector.encoding
+        block = renderer.render_image(image, **kwargs)
+    except UnknownDisplayError:
+        raise
+    except (PixelRenderError, ValueError, KeyError) as e:
+        res = Result()
+        res.isOk = False
+        res.msg = str(e)
+        return res
+    return display_data_block_with_retry(display_no, block)
+
 @bp.route('/image', methods = ['POST'])
 def upload_file():
-    id = validate_id(request.args.get("id", default=default_id, type=int))
+    id = validate_id(request.args.get("id", default=connector.default_id, type=int))
     imageFile = request.files['file']
     page = int(request.args.get('page'))
     img = Image.open(imageFile.stream)
-    imgArr = np.asarray(img)
-    data = pixel.create_data_block(pixel.get_image_data(imgArr, page=page))
-    resp = display_data_block_with_retry(id, data)
+    resp = show_image(id, img, page)
     return resp.toResponse()
 
 @bp.route('/text', methods=["POST"])
 def text():
-    id = validate_id(request.args.get("id", default=default_id, type=int))
+    id = validate_id(request.args.get("id", default=connector.default_id, type=int))
     value = request.args.get('value')
     page = int(request.args.get('page'))
     font = request.args.get('font')
@@ -58,17 +70,15 @@ def text():
         font = 'superstar'
     fontDef = available_fonts.get(font)
     if fontDef is None:
-        Response("Font not found", status=404)
+        return Response("Font not found", status=404)
     img = Image.new("1", get_dimensions(id), (0))
     fontDef.drawText(img, 0, 0 + fontDef.topOffset, value, (255))
-    imgArr = np.asarray(img)
-    data = pixel.create_data_block(pixel.get_image_data(imgArr, page=page))
-    resp = display_data_block_with_retry(id, data)
+    resp = show_image(id, img, page)
     return resp.toResponse()
 
 @bp.route("/complex", methods=["POST"])
 def complex():
-    id = validate_id(request.args.get("id", default=default_id, type=int))
+    id = validate_id(request.args.get("id", default=connector.default_id, type=int))
     page = int(request.args.get('page'))
     json_data = request.get_data()
     data = get_display_data(json_data)
@@ -76,7 +86,5 @@ def complex():
         img = render_display_data(id, data)
     except ValueError as e:
         return Response(str(e.args), status=400)
-    imgArr = np.asarray(img)
-    data = pixel.create_data_block(pixel.get_image_data(imgArr, page=page))
-    resp = display_data_block_with_retry(id, data)
+    resp = show_image(id, img, page)
     return resp.toResponse()

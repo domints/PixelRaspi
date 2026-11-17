@@ -11,11 +11,17 @@ To update execute `sudo update.sh`, it'll stop the service, pull latest repo cod
 
 Just make sure your filesystem is writable (disable overlay fs when updating).
 
+This service talks to the display through [pixel-flipdot](https://github.com/domints/PixelFlipDot) 0.1 (the `pixel.renderer` engine and the `HwSerial` / `WaveshareEthernet` transports).
+
+Images are sent with `Pixel.make_renderer(...).render_image(...)`. The 8051 flip-dot path defaults to `nibble_rle`. LPC1768 defaults to the renderer's mono `bitmap` encoding. Set `PIXEL_ENCODING` to override either one (`bitmap`, `nibble_rle`, …).
+
 If you're using Waveshare CAN/RS485 hat, create folder `instance` and inside file `config.json` with following value:
 
     {
         "PIXEL_PIN": 4
     }
+
+`PIXEL_PIN` is the RS-485 driver-enable GPIO (`HwSerial(de_pin=...)`). Leave it null for USB adapters that handle direction themselves. `PIXEL_BAUD` defaults to `4800`. Fast panels run at `19200`. The baud rate belongs to the whole RS-485 line, so every panel on one bus has to use the same value. `PIXEL_RTS_TOGGLE` and `PIXEL_RS485` turn on the matching `HwSerial` direction modes.
 
 If you want to use it on PC, create folder `instance` and inside file `config.json` with following value, filling `PIXEL_PORT` with whatever identifies your serial port:
 
@@ -25,6 +31,32 @@ If you want to use it on PC, create folder `instance` and inside file `config.js
     }
 
 For some reasons you might want to add `PIXEL_PORT` for raspberry too, if your port is not `/dev/serial0` (sometimes on Pi Zero W?).
+
+Waveshare RS485-to-Ethernet serial servers use a TCP socket instead of a local UART. The baud rate is set on the Waveshare itself, and `PIXEL_BAUD` has no effect on that path. Set the bridge to `19200` for fast panels. `PIXEL_ETH_HOST` wins over `PIXEL_PORT` when it is set:
+
+    {
+        "PIXEL_ETH_HOST": "10.42.76.80",
+        "PIXEL_ETH_PORT": 4196,
+        "PIXEL_CONTROLLER": "lpc1768"
+    }
+
+Each address in `DISPLAY_IDS` is probed on its own. Width and height come from that panel's `GID` (`G96x36x256` is 96×36, `G112x16x14` is 112×16), and the renderer is built for that size. A 112×16 flip-dot and a 96×36 LPC can share the bus.
+
+The controller family is chosen per address too. `XTD` in the factory id, or a `GID` third field of `256` (`G96x36x256`), selects `lpc1768`. A third field of `14` (`G112x16x14`, `G84x16x14`) selects `8051`. `PIXEL_CONTROLLER` is only the fallback when a panel matches neither (default `8051`). `PIXEL_COLOR_MODE` (`mono`, `gray4`, `rgb`) applies to every LPC renderer on the bus. `PIXEL_CONTROLLERS` overrides detection for specific decimal addresses:
+
+    {
+        "DISPLAY_IDS": [0, 11],
+        "PIXEL_CONTROLLERS": {
+            "0": "8051",
+            "11": "lpc1768"
+        }
+    }
+
+Addresses in `DISPLAY_IDS` and in request query parameter `id` are decimal. On the wire they are a single hex digit, so `11` is panel `B`. Requests without `id` go to the first panel that answered.
+
+`/display/image` sends the uploaded picture to that panel's own renderer, so the image has to fit that panel. `/display/text` and `/display/complex` also allocate a canvas of that panel's size, but the text layout still draws at most two rows in the top 16 pixels.
+
+`POST /actions/validators_block` is bus-wide. The clock job follows the first panel that answered, not a hardcoded address.
 
 If you don't want to connect to hardware display, you can use mock device, which lets app work without display, create config file as above with contents:
 

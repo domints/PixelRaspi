@@ -1,24 +1,24 @@
 from flask import Blueprint, request
-from flipdot.connector import pixel, default_id, validate_id
+from flipdot import connector
+from flipdot.connector import validate_id
 
 bp = Blueprint('info', __name__, url_prefix='/info')
 
+def _display_id() -> int:
+    return validate_id(request.args.get("id", default=connector.default_id, type=int))
+
 @bp.route("/factory_dentification")
 def factory_id():
-    id = validate_id(request.args.get("id", default=default_id, type=int))
-    return pixel.get_factory_identification(id)
+    return connector.pixel.get_factory_identification(_display_id())
 
 @bp.route("/gid")
 def gid():
-    id = validate_id(request.args.get("id", default=default_id, type=int))
-    return pixel.get_gid(id)
+    return connector.pixel.get_gid(_display_id())
 
 @bp.route("/did")
 def did():
-    id = validate_id(request.args.get("id", default=default_id, type=int))
-    return pixel.get_did(id)
+    return connector.pixel.get_did(_display_id())
 
 @bp.route("/available_commands")
 def available_commands():
-    id = validate_id(request.args.get("id", default=default_id, type=int))
-    return pixel.get_available_commands(id)
+    return connector.pixel.get_available_commands(_display_id())
