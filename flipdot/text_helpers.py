@@ -6,14 +6,17 @@ from flask_openapi3 import APIBlueprint, Tag
 from flipdot.block_helpers import render_blocks_data
 from flipdot.connector import get_dimensions, resolve_id
 from flipdot.models import (
-    CharD, DisplayData, AdditionType, PxFont, TextAlign,
+    CharD, ContentLayer, DisplayData, AdditionType, PxFont, TextAlign,
     BlockList, DisplayIdQuery, FontList, IconList,
 )
+import base64
+import binascii
 import io
 import json
 import math
 import os
 from PIL import Image, ImageDraw, ImageFont, ImageOps
+from pixel.renderer import Layer
 
 default_big_font = "MiniMasa"
 default_small_font = "uni05_53"
@@ -242,6 +245,60 @@ def render_display_data(displayId: int, data: DisplayData) -> Image.Image:
             draw_text(img, font, data.lines[i].text, left_text_margin, i * 8, img.width - left_text_margin, data.lines[i].invert, data.lines[i].auto_break if singleLine else False, True if i == 1 else False, False, data.lines[i].align)
 
     return img
+
+
+def render_content_layer(layer: ContentLayer) -> Image.Image:
+    sources = [layer.text is not None, layer.icon is not None, layer.image is not None]
+    if sum(sources) != 1:
+        raise ValueError("Each layer needs exactly one of text, icon, or image")
+    if layer.text is not None:
+        font_name = layer.font or default_big_font
+        fontDef = available_fonts.get(font_name)
+        if fontDef is None:
+            raise ValueError(f"No such font ({font_name}) available.")
+        width = max(1, fontDef.calcWidth(layer.text))
+        height = max(1, fontDef.height + max(0, fontDef.topOffset))
+        img = Image.new("1", (width, height), 0)
+        fontDef.drawText(img, 0, fontDef.topOffset, layer.text, 0 if layer.invert else 255)
+        return img
+    if layer.icon is not None:
+        icon_path = f"./icons/{layer.icon}.png"
+        if not os.path.isfile(icon_path):
+            raise ValueError(f"No icon '{layer.icon}' found.")
+        icon = Image.open(icon_path)
+        if not layer.invert:
+            icon = ImageOps.invert(icon.convert("RGB"))
+        return icon
+    try:
+        raw = base64.b64decode(layer.image, validate=True)
+    except binascii.Error as e:
+        raise ValueError("Layer image is not valid base64") from e
+    try:
+        img = Image.open(io.BytesIO(raw))
+        img.load()
+    except Exception as e:
+        raise ValueError("Layer image could not be decoded") from e
+    if layer.invert:
+        img = ImageOps.invert(img.convert("L"))
+    return img
+
+
+def build_content_layers(layers: list[ContentLayer]) -> list[Layer]:
+    built = []
+    for layer in layers:
+        direction = layer.scroll_direction.value if hasattr(layer.scroll_direction, "value") else layer.scroll_direction
+        built.append(Layer(
+            image=render_content_layer(layer),
+            left=layer.left,
+            bottom=layer.bottom,
+            threshold=1,
+            scroll=layer.scroll,
+            scroll_vertical=layer.scroll_vertical,
+            scroll_direction=direction,
+            scroll_rate=layer.scroll_rate,
+            window_width=layer.window_width,
+        ))
+    return built
 
 bp = APIBlueprint('text', __name__, url_prefix='/text', abp_tags=[Tag(name='text')])
 

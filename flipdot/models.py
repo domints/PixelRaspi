@@ -51,11 +51,40 @@ class Block(BaseModel):
     right: Optional[int] = None
     spans: list[str | Span] = []
     
+class ScrollDirection(Enum):
+    Rtl = 'rtl'
+    Ltr = 'ltr'
+
+class ContentLayer(BaseModel):
+    """One image on the page. Supply exactly one of text, icon, or image.
+
+    ``bottom`` is the row above the bottom of the panel. Later layers paint over
+    earlier ones. ``scroll`` is native hardware scrolling and only works on an LPC panel.
+    """
+    model_config = ConfigDict()
+
+    text: Optional[str] = None
+    font: Optional[str] = None
+    icon: Optional[str] = Field(None, description="Icon name, without the .png suffix.")
+    image: Optional[str] = Field(None, description="Base64-encoded image file.")
+    left: int = Field(0, ge=0)
+    bottom: int = Field(0, ge=0)
+    invert: bool = False
+    scroll: bool = False
+    scroll_vertical: bool = False
+    scroll_direction: ScrollDirection = ScrollDirection.Rtl
+    scroll_rate: int = Field(40, ge=0, description="LPC scroll speed. 0 stays still. Motion saturates near 40.")
+    window_width: Optional[int] = Field(None, ge=1, description="On-screen window. Defaults to the panel width, or height when scrolling vertically.")
+
 class DisplayData(BaseModel):
     model_config = ConfigDict()
 
     addition: Optional[Addition] = None
     lines: Optional[list[TextLine]] = Field(None, max_length=2)
+    layers: Optional[list[ContentLayer]] = Field(
+        None,
+        description="When set, these layers are the page. addition and lines are ignored.",
+    )
 
 class CharD(BaseModel):
     model_config = ConfigDict()
